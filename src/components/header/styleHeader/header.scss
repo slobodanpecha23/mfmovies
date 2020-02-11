@@ -1,0 +1,34 @@
+////---------COLORS----------////
+$header-background: rgb(26, 26, 97);
+$primary-color: rgb(241, 160, 8);
+
+.header-style {
+    background-color: $header-background;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@font-face {
+    font-family: "Heathens Sans";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Heathens Sans"),
+        url("../../../fonts/Heathens\ Sans.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Strawberry Shortcake";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Strawberry Shortcake"),
+        url("../../../fonts/Strawberry\ Shortcake\ Supplement\ Logo.woff")
+            format("woff");
+}
+
+.logo-font {
+    font-family: "Strawberry Shortcake";
+    font-size: 25px;
+    color: $primary-color;
+    margin-left: 20px;
+}
