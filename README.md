@@ -1,3 +1,9 @@
+This is my project where I try to apply my current programming knowledge. I use react and redux.
+
+I use APIs from https://www.themoviedb.org/ The Movie Database (TMDb)
+
+//================================== React README (next) =====================================
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
