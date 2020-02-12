@@ -1,9 +1,11 @@
+@import "../../../sass/variables.scss";
+
 button {
     background: none;
-    color: rgb(241, 160, 8);
+    color: $primary-color;
     width: 120px;
     height: 40px;
-    border: 2px solid rgb(241, 160, 8);
+    border: 2px solid $primary-color;
     font-size: 15px;
     border-radius: 4px;
     transition: 0.6s;
@@ -11,7 +13,7 @@ button {
     margin-right: 20px;
 
     &:hover {
-        background: rgb(248, 72, 2);
+        background: $hover-color;
         color: #fff;
     }
 }

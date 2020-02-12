@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styleHeader/loginButton.scss";
+import "./style/loginButton.scss";
 
 export class LogInButton extends Component {
     render() {

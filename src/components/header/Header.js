@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./styleHeader/header.scss";
+import "./style/header.scss";
 import SearchField from "./SearchField";
 import LogInButton from "./LogInButton";
 

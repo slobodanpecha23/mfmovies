@@ -1,6 +1,4 @@
-////---------COLORS----------////
-$header-background: rgb(26, 26, 97);
-$primary-color: rgb(241, 160, 8);
+@import "../../../sass/variables.scss";
 
 .header-style {
     background-color: $header-background;

@@ -1,3 +1,5 @@
+@import "../../../sass/variables.scss";
+
 input {
     position: relative;
     display: inline-block;
@@ -23,11 +25,11 @@ input {
         border: none;
         outline: none;
         cursor: pointer;
-        background: rgb(241, 160, 8);
+        background: $primary-color;
         color: #fff;
 
         &:hover {
-            background: rgb(248, 72, 2);
+            background: $hover-color;
         }
     }
 }
