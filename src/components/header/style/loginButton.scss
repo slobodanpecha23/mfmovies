@@ -1,0 +1,19 @@
+@import "../../../sass/variables.scss";
+
+button {
+    background: none;
+    color: $primary-color;
+    width: 120px;
+    height: 40px;
+    border: 2px solid $primary-color;
+    font-size: 15px;
+    border-radius: 4px;
+    transition: 0.6s;
+    overflow: hidden;
+    margin-right: 20px;
+
+    &:hover {
+        background: $hover-color;
+        color: #fff;
+    }
+}

@@ -1,0 +1,35 @@
+@import "../../../sass/variables.scss";
+
+input {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    box-sizing: border-box;
+    transition: all 0.5s;
+
+    &[type="text"] {
+        background: #fff;
+        width: 350px;
+        height: 40px;
+        border: none;
+        outline: none;
+        padding: 0 25px;
+        border-radius: 25px 0 0 25px;
+    }
+
+    &[type="submit"] {
+        position: relative;
+        border-radius: 0 25px 25px 0;
+        height: 40px;
+        width: 100px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background: $primary-color;
+        color: #fff;
+
+        &:hover {
+            background: $hover-color;
+        }
+    }
+}
