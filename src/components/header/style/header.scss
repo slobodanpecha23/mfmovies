@@ -5,6 +5,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media only screen and(max-width: $bp-small) {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
 }
 
 @font-face {
@@ -29,4 +34,8 @@
     font-size: 25px;
     color: $primary-color;
     margin-left: 20px;
+
+    @media only screen and(max-width: $bp-small) {
+        margin: 4px 10px;
+    }
 }

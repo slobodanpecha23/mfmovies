@@ -7,6 +7,10 @@ input {
     box-sizing: border-box;
     transition: all 0.5s;
 
+    @media only screen and(max-width: $bp-medium) {
+        font-size: 16px;
+    }
+
     &[type="text"] {
         background: #fff;
         width: 350px;
@@ -15,6 +19,11 @@ input {
         outline: none;
         padding: 0 25px;
         border-radius: 25px 0 0 25px;
+
+        @media only screen and(max-width: $bp-medium) {
+            width: 250px;
+            height: 30px;
+        }
     }
 
     &[type="submit"] {
@@ -26,10 +35,25 @@ input {
         outline: none;
         cursor: pointer;
         background: $primary-color;
-        color: #fff;
+        color: $color-white;
+
+        @media only screen and(max-width: $bp-medium) {
+            width: 70px;
+            height: 30px;
+        }
 
         &:hover {
             background: $hover-color;
         }
+    }
+}
+
+.searchForm {
+    @media only screen and(max-width: 600px) {
+        order: 1;
+        flex: 0 0 100%;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: center;
     }
 }
