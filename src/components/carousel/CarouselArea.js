@@ -44,9 +44,7 @@ export class CarouselArea extends Component {
                                         alt="movie_wallpaper"
                                         src={`${base_url}${backdrop_size}${obj.backdrop_path}`}
                                     />
-                                    <p className="legend">
-                                        {obj.original_title}
-                                    </p>
+                                    <p className="legend">{obj.title}</p>
                                 </div>
                             );
                         })}
