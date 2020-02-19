@@ -1,0 +1,29 @@
+@import "../../../sass/variables.scss";
+
+.popular-heading {
+    background: linear-gradient(to right, $black-background, $color-white);
+    color: $color-white;
+    padding: 10px;
+}
+
+.poster-section {
+    display: flex;
+    justify-content: space-around;
+
+    @media only screen and(max-width: 1250px) {
+        flex-wrap: wrap;
+    }
+}
+
+.inside-poster {
+    margin: 5px;
+    width: 300px;
+}
+
+.loading1 {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    color: $hover-color;
+    background: linear-gradient(to bottom, $black-background, $color-white);
+}
