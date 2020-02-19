@@ -1,0 +1,27 @@
+@import "../../../sass/variables.scss";
+
+.carousel-style {
+    display: flex;
+    justify-content: center;
+    padding: 50px 100px;
+    background: linear-gradient(to bottom, $black-background, $color-white);
+
+    @media only screen and(max-width: $bp-medium) {
+        padding: 30px 30px;
+    }
+
+    @media only screen and(max-width: $bp-small) {
+        padding: 10px 10px;
+    }
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    background: linear-gradient(to bottom, $black-background, $color-white);
+}
+
+.carousel-width {
+    width: 700px;
+}

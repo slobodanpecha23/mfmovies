@@ -19,6 +19,9 @@ input {
         outline: none;
         padding: 0 25px;
         border-radius: 25px 0 0 25px;
+        &::placeholder {
+            color: $placeholder-color;
+        }
 
         @media only screen and(max-width: $bp-medium) {
             width: 250px;
