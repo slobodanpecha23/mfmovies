@@ -1,12 +1,16 @@
 ////---------COLORS----------////
 $header-background: rgb(0, 0, 0);
+$footer-background: rgb(19, 6, 53);
 $primary-color: rgb(241, 160, 8);
 $hover-color: rgb(248, 72, 2);
 $color-white: #fff;
 $placeholder-color: rgba(214, 206, 206, 0.562);
 $black-background: rgba(0, 0, 0, 0.945);
+$border-color: rgb(133, 131, 131);
 
 ////-----------Break points for media queries----------////
 $bp-small: 600px;
 $bp-medium: 900px;
 $bp-large: 1200px;
+$bp-now-playing-small: 650px;
+$bp-now-playing-large: 1000px;

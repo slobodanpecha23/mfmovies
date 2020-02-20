@@ -1,25 +1,49 @@
 import {
-    IMG_CONFIG_SUCCESS,
-    IMG_GET_POPULAR_SUCCESS,
-    IMG_DATA_FAILED
-} from "../constants/action-types";
+    CONFIG_SUCCESS,
+    POPULAR_DATA_SUCCESS,
+    IMG_DATA_FAILED,
+    NOW_PLAYING_DATA_SUCCESS,
+    NOW_PLAYING_DATA_FAILED,
+    TOP_RATED_DATA_SUCCESS,
+    TOP_RATED_DATA_FAILED
+} from "../constants/action_types";
+import {
+    getConfig,
+    getPopularData,
+    getNowPlayingData,
+    getTopRatedData
+} from "../utils/ApiUtils";
 
 export const getImgData = () => dispatch => {
-    fetch(
-        "https://api.themoviedb.org/3/configuration?api_key=16cf5c1a32c09c8537551ce78b2ffc62"
-    )
+    fetch(getConfig())
         .then(response => response.json())
         .then(data => {
             return (
-                dispatch({ type: IMG_CONFIG_SUCCESS, payload: data }),
-                fetch(
-                    "https://api.themoviedb.org/3/movie/popular?api_key=16cf5c1a32c09c8537551ce78b2ffc62&language=en-US&page=1"
-                )
+                dispatch({ type: CONFIG_SUCCESS, payload: data }),
+                fetch(getPopularData())
             );
         })
         .then(response => response.json())
-        .then(data =>
-            dispatch({ type: IMG_GET_POPULAR_SUCCESS, payload: data })
-        )
+        .then(data => dispatch({ type: POPULAR_DATA_SUCCESS, payload: data }))
         .catch(error => dispatch({ type: IMG_DATA_FAILED, payload: error }));
+};
+
+export const getNowPlaying = () => dispatch => {
+    fetch(getNowPlayingData())
+        .then(response => response.json())
+        .then(data =>
+            dispatch({ type: NOW_PLAYING_DATA_SUCCESS, payload: data })
+        )
+        .catch(error =>
+            dispatch({ type: NOW_PLAYING_DATA_FAILED, payload: error })
+        );
+};
+
+export const getTopRated = () => dispatch => {
+    fetch(getTopRatedData())
+        .then(response => response.json())
+        .then(data => dispatch({ type: TOP_RATED_DATA_SUCCESS, payload: data }))
+        .catch(error =>
+            dispatch({ type: TOP_RATED_DATA_FAILED, payload: error })
+        );
 };

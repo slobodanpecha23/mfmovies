@@ -1,0 +1,66 @@
+@import "../../../sass/variables.scss";
+
+.container {
+    display: flex;
+    padding: 15px;
+    justify-content: space-around;
+
+    @media only screen and(max-width: $bp-now-playing-large) {
+        flex-wrap: wrap;
+    }
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media only screen and(max-width: $bp-now-playing-large) {
+        margin-bottom: 10px;
+    }
+
+    @media only screen and(max-width: $bp-small) {
+        border-bottom: 1px solid $border-color;
+        margin-bottom: 15px;
+    }
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 900px;
+}
+
+.inside-backdrop {
+    display: flex;
+    justify-content: space-around;
+
+    @media only screen and(max-width: $bp-now-playing-small) {
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+}
+.backdrop {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+    @media only screen and(max-width: $bp-small) {
+        border-bottom: 1px solid $border-color;
+        margin-bottom: 15px;
+    }
+}
+.backdrop:first-child {
+    @media only screen and(max-width: $bp-now-playing-small) {
+        margin-bottom: 10px;
+    }
+}
+
+.img-shadow {
+    box-shadow: 0 10px 18px $header-background;
+
+    &:hover {
+        box-shadow: 0 5px 10px $header-background;
+    }
+}
