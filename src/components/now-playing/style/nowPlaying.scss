@@ -1,0 +1,48 @@
+@import "../../../sass/variables.scss";
+
+.container {
+    display: flex;
+    padding: 15px;
+    justify-content: space-around;
+
+    @media only screen and(max-width: $bp-now-playing-large) {
+        flex-wrap: wrap;
+    }
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media only screen and(max-width: $bp-now-playing-large) {
+        margin-bottom: 10px;
+    }
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 900px;
+}
+
+.inside-backdrop {
+    display: flex;
+    justify-content: space-around;
+
+    @media only screen and(max-width: $bp-now-playing-small) {
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+}
+.backdrop {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+.backdrop:first-child {
+    @media only screen and(max-width: $bp-now-playing-small) {
+        margin-bottom: 10px;
+    }
+}

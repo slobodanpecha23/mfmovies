@@ -28,7 +28,7 @@ export class Popular extends Component {
                     <div className="poster-section">
                         {poster.map(obj => {
                             return (
-                                <div className="inside-poster">
+                                <div key={obj.id} className="inside-poster">
                                     <img
                                         alt="movie_poster"
                                         src={`${base_url}${backdrop_size}${obj.poster_path}`}

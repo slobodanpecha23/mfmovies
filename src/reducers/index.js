@@ -1,8 +1,9 @@
-import { getImgDataReducer } from "./reducers";
+import { getImgDataReducer, getNowPlayingReducer } from "./reducers";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
-    getImgDataReducer
+    getImgDataReducer,
+    getNowPlayingReducer
 });
 
 export default rootReducer;

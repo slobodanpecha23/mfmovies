@@ -39,7 +39,7 @@ export class CarouselArea extends Component {
                     >
                         {wallpaper.map(obj => {
                             return (
-                                <div>
+                                <div key={obj.id}>
                                     <img
                                         alt="movie_wallpaper"
                                         src={`${base_url}${backdrop_size}${obj.backdrop_path}`}
