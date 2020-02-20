@@ -4,30 +4,28 @@ import { connect } from "react-redux";
 
 const mapStateToProps = state => {
     return {
-        get_now_playing: state.getNowPlayingReducer.get_now_playing,
-        img_config: state.getImgDataReducer.img_config
+        now_playing: state.getNowPlayingReducer.now_playing,
+        config: state.getImgDataReducer.config
     };
 };
 
 export class NowPlaying extends Component {
     render() {
-        const { img_config, get_now_playing } = this.props;
+        const { config, now_playing } = this.props;
         if (
-            img_config.images &&
-            img_config.images.base_url &&
-            get_now_playing.results &&
-            get_now_playing.results.length
+            config.images &&
+            config.images.base_url &&
+            now_playing.results &&
+            now_playing.results.length
         ) {
-            const base_url = img_config.images.base_url;
-            const backdrop_size = img_config.images.backdrop_sizes[0];
-            const poster_size = img_config.images.poster_sizes[3];
-            const poster = get_now_playing.results
-                .map(movie => movie)
-                .slice(0, 1);
-            const backdrop13 = get_now_playing.results
+            const base_url = config.images.base_url;
+            const backdrop_size = config.images.backdrop_sizes[0];
+            const poster_size = config.images.poster_sizes[3];
+            const poster = now_playing.results.map(movie => movie).slice(0, 1);
+            const backdrop13 = now_playing.results
                 .map(movie => movie)
                 .slice(1, 3);
-            const backdrop35 = get_now_playing.results
+            const backdrop35 = now_playing.results
                 .map(movie => movie)
                 .slice(3, 5);
             return (
@@ -36,6 +34,7 @@ export class NowPlaying extends Component {
                     <div className="container">
                         <div className="left-side">
                             <img
+                                className="img-shadow"
                                 alt="movie_poster"
                                 src={`${base_url}${poster_size}${poster[0].poster_path}`}
                             />
@@ -50,6 +49,7 @@ export class NowPlaying extends Component {
                                     return (
                                         <div key={obj.id} className="backdrop">
                                             <img
+                                                className="img-shadow"
                                                 alt="movie_poster"
                                                 src={`${base_url}${backdrop_size}${obj.backdrop_path}`}
                                             />
@@ -68,6 +68,7 @@ export class NowPlaying extends Component {
                                     return (
                                         <div key={obj.id} className="backdrop">
                                             <img
+                                                className="img-shadow"
                                                 alt="movie_poster"
                                                 src={`${base_url}${backdrop_size}${obj.backdrop_path}`}
                                             />

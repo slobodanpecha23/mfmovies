@@ -1,23 +1,25 @@
 import {
-    IMG_CONFIG_SUCCESS,
-    IMG_GET_POPULAR_SUCCESS,
+    CONFIG_SUCCESS,
+    POPULAR_DATA_SUCCESS,
     IMG_DATA_FAILED,
-    IMG_GET_NOW_PLAYING_SUCCESS,
-    IMG_GET_NOW_PLAYING_FAILED
-} from "../constants/action-types";
+    NOW_PLAYING_DATA_SUCCESS,
+    NOW_PLAYING_DATA_FAILED,
+    TOP_RATED_DATA_SUCCESS,
+    TOP_RATED_DATA_FAILED
+} from "../constants/action_types";
 
 const initialState = {
-    img_config: {},
-    get_popular: {},
+    config: {},
+    popular: {},
     error: ""
 };
 
 export const getImgDataReducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case IMG_CONFIG_SUCCESS:
-            return { ...state, img_config: action.payload };
-        case IMG_GET_POPULAR_SUCCESS:
-            return { ...state, get_popular: action.payload };
+        case CONFIG_SUCCESS:
+            return { ...state, config: action.payload };
+        case POPULAR_DATA_SUCCESS:
+            return { ...state, popular: action.payload };
         case IMG_DATA_FAILED:
             return { ...state, error: action.payload };
         default:
@@ -26,15 +28,31 @@ export const getImgDataReducer = (state = initialState, action = {}) => {
 };
 
 const nowPlayingState = {
-    get_now_playing: {},
+    now_playing: {},
     error: ""
 };
 
 export const getNowPlayingReducer = (state = nowPlayingState, action = {}) => {
     switch (action.type) {
-        case IMG_GET_NOW_PLAYING_SUCCESS:
-            return { ...state, get_now_playing: action.payload };
-        case IMG_GET_NOW_PLAYING_FAILED:
+        case NOW_PLAYING_DATA_SUCCESS:
+            return { ...state, now_playing: action.payload };
+        case NOW_PLAYING_DATA_FAILED:
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+const topRatedState = {
+    top_rated: {},
+    error: ""
+};
+
+export const getTopRatedReducer = (state = topRatedState, action = {}) => {
+    switch (action.type) {
+        case TOP_RATED_DATA_SUCCESS:
+            return { ...state, top_rated: action.payload };
+        case TOP_RATED_DATA_FAILED:
             return { ...state, error: action.payload };
         default:
             return state;

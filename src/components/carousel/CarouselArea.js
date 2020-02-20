@@ -6,26 +6,24 @@ import { connect } from "react-redux";
 
 const mapStateToProps = state => {
     return {
-        img_config: state.getImgDataReducer.img_config,
-        get_popular: state.getImgDataReducer.get_popular,
+        config: state.getImgDataReducer.config,
+        popular: state.getImgDataReducer.popular,
         error: state.getImgDataReducer.error
     };
 };
 
 export class CarouselArea extends Component {
     render() {
-        const { img_config, get_popular } = this.props;
+        const { config, popular } = this.props;
         if (
-            img_config.images &&
-            img_config.images.base_url &&
-            get_popular.results &&
-            get_popular.results.length
+            config.images &&
+            config.images.base_url &&
+            popular.results &&
+            popular.results.length
         ) {
-            const base_url = img_config.images.base_url;
-            const backdrop_size = img_config.images.backdrop_sizes[3];
-            const wallpaper = get_popular.results
-                .map(movie => movie)
-                .slice(0, 5);
+            const base_url = config.images.base_url;
+            const backdrop_size = config.images.backdrop_sizes[3];
+            const wallpaper = popular.results.map(movie => movie).slice(0, 5);
             return (
                 <div className="carousel-style">
                     <Carousel
