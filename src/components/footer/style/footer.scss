@@ -1,0 +1,28 @@
+@import "../../../sass/variables.scss";
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: $header-background;
+
+    &--logo {
+        font-family: "Strawberry Shortcake";
+        font-size: 25px;
+        color: $primary-color;
+    }
+
+    &--text {
+        color: $primary-color;
+        font-size: 12px;
+        border-top: 1px solid $border-color;
+        width: 32%;
+        padding-top: 5px;
+        text-align: justify;
+
+        @media only screen and(max-width: $bp-small) {
+            width: 70%;
+        }
+    }
+}
