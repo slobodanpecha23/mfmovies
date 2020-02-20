@@ -3,6 +3,7 @@ import Header from "./components/header/Header";
 import CarouselArea from "./components/carousel/CarouselArea";
 import { connect } from "react-redux";
 import { getImgData } from "./actions/actions";
+import Popular from "./components/popular/Popular";
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -20,6 +21,7 @@ export class App extends Component {
             <div className="App">
                 <Header />
                 <CarouselArea />
+                <Popular />
                 <h1>Wish u amazing day!</h1>
             </div>
         );
