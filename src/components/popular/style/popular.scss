@@ -34,3 +34,8 @@
     color: $hover-color;
     background: linear-gradient(to bottom, $black-background, $color-white);
 }
+
+.link-style {
+    text-decoration: none;
+    color: $header-background;
+}

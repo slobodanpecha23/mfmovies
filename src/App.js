@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import Header from "./components/header/Header";
 import { connect } from "react-redux";
 import { getImgData, getNowPlaying, getTopRated } from "./actions/actions";
-// import CarouselArea from "./components/carousel/CarouselArea";
-// import Popular from "./components/popular/Popular";
-// import NowPlaying from "./components/nowplaying/NowPlaying";
-// import TopRated from "./components/toprated/TopRated";
+import CarouselArea from "./components/carousel/CarouselArea";
+import Popular from "./components/popular/Popular";
+import NowPlaying from "./components/nowplaying/NowPlaying";
+import TopRated from "./components/toprated/TopRated";
 import Footer from "./components/footer/Footer";
-import GetDetail from "./components/getdetail/MovieDetail";
+import MovieDetail from "./components/getdetail/MovieDetail";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -26,17 +27,27 @@ export class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <Header />
-                {/* <CarouselArea />
-                <Popular />
-                <NowPlaying />
-                <TopRated /> */}
-                <GetDetail />
-                <Footer />
-            </div>
+            <Router>
+                <div className="App">
+                    <Header />
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/detail/:id" component={MovieDetail} />
+                    </Switch>
+                    <Footer />
+                </div>
+            </Router>
         );
     }
 }
+
+const Home = () => (
+    <div>
+        <CarouselArea />
+        <Popular />
+        <NowPlaying />
+        <TopRated />
+    </div>
+);
 
 export default connect(null, mapDispatchToProps)(App);

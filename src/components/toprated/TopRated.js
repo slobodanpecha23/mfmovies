@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const mapStateToProps = state => {
     return {
@@ -27,14 +28,23 @@ export class TopRated extends Component {
                         {poster.map(obj => {
                             return (
                                 <div key={obj.id} className="inside-poster">
-                                    <img
-                                        className="img-shadow"
-                                        alt="movie_poster"
-                                        src={`${base_url}${backdrop_size}${obj.poster_path}`}
-                                    />
+                                    <Link to={`/detail/${obj.id}`}>
+                                        <img
+                                            className="img-shadow"
+                                            alt="movie_poster"
+                                            src={`${base_url}${backdrop_size}${obj.poster_path}`}
+                                        />
+                                    </Link>
                                     <p>Release date: {obj.release_date}</p>
                                     <p>Rating: {obj.vote_average}</p>
-                                    <h4>{obj.title}</h4>
+                                    <h4>
+                                        <Link
+                                            to={`/detail/${obj.id}`}
+                                            className="link-style"
+                                        >
+                                            {obj.title}
+                                        </Link>
+                                    </h4>
                                 </div>
                             );
                         })}

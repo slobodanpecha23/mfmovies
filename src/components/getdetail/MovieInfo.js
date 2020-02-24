@@ -12,7 +12,12 @@ const mapStateToProps = state => {
 export class MovieInfo extends Component {
     render() {
         const { config, movie_detail } = this.props;
-        if (config.images && config.images.base_url && movie_detail) {
+        if (
+            config.images &&
+            config.images.base_url &&
+            movie_detail &&
+            movie_detail.release_date
+        ) {
             const base_url = config.images.base_url;
             const poster_size = config.images.poster_sizes[3];
             const logo_size = config.images.logo_sizes[1];
@@ -58,10 +63,19 @@ export class MovieInfo extends Component {
                                 <img
                                     className="production__logo--img"
                                     alt="production logo"
-                                    src={`${base_url}${logo_size}${movie_detail.production_companies[0].logo_path}`}
+                                    src={
+                                        movie_detail.production_companies
+                                            .length === 0
+                                            ? "x"
+                                            : `${base_url}${logo_size}${movie_detail.production_companies[0].logo_path}`
+                                    }
                                 />
                                 <p>
-                                    {movie_detail.production_companies[0].name}
+                                    {movie_detail.production_companies
+                                        .length === 0
+                                        ? "--"
+                                        : movie_detail.production_companies[0]
+                                              .name}
                                 </p>
                             </div>
                         </div>

@@ -54,8 +54,8 @@ export const getTopRated = () => dispatch => {
         );
 };
 
-export const movieDetail = () => dispatch => {
-    fetch(getMovieDetail())
+export const movieDetail = id => dispatch => {
+    fetch(getMovieDetail(id))
         .then(response => response.json())
         .then(data => dispatch({ type: MOVIE_DETAIL_SUCCESS, payload: data }))
         .catch(error =>
@@ -63,8 +63,8 @@ export const movieDetail = () => dispatch => {
         );
 };
 
-export const movieCrew = () => dispatch => {
-    fetch(getCast())
+export const movieCrew = id => dispatch => {
+    fetch(getCast(id))
         .then(response => response.json())
         .then(data => dispatch({ type: CAST_SUCCESS, payload: data }))
         .catch(error => dispatch({ type: CAST_FAILED, payload: error }));

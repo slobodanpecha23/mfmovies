@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./style/nowPlaying.scss";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const mapStateToProps = state => {
     return {
@@ -33,14 +34,23 @@ export class NowPlaying extends Component {
                     <h1 className="popular-heading">Now playing</h1>
                     <div className="container">
                         <div className="left-side">
-                            <img
-                                className="img-shadow"
-                                alt="movie_poster"
-                                src={`${base_url}${poster_size}${poster[0].poster_path}`}
-                            />
+                            <Link to={`/detail/${poster[0].id}`}>
+                                <img
+                                    className="img-shadow"
+                                    alt="movie_poster"
+                                    src={`${base_url}${poster_size}${poster[0].poster_path}`}
+                                />
+                            </Link>
                             <div>
                                 <p>Rating: {poster[0].vote_average}</p>
-                                <h4>{poster[0].title}</h4>
+                                <h4>
+                                    <Link
+                                        to={`/detail/${poster[0].id}`}
+                                        className="link-style"
+                                    >
+                                        {poster[0].title}
+                                    </Link>
+                                </h4>
                             </div>
                         </div>
                         <div className="right-side">
@@ -48,16 +58,25 @@ export class NowPlaying extends Component {
                                 {backdrop13.map(obj => {
                                     return (
                                         <div key={obj.id} className="backdrop">
-                                            <img
-                                                className="img-shadow"
-                                                alt="movie_poster"
-                                                src={`${base_url}${backdrop_size}${obj.backdrop_path}`}
-                                            />
+                                            <Link to={`/detail/${obj.id}`}>
+                                                <img
+                                                    className="img-shadow"
+                                                    alt="movie_poster"
+                                                    src={`${base_url}${backdrop_size}${obj.backdrop_path}`}
+                                                />
+                                            </Link>
                                             <div>
                                                 <p>
                                                     Rating: {obj.vote_average}
                                                 </p>
-                                                <h4>{obj.title}</h4>
+                                                <h4>
+                                                    <Link
+                                                        to={`/detail/${obj.id}`}
+                                                        className="link-style"
+                                                    >
+                                                        {obj.title}
+                                                    </Link>
+                                                </h4>
                                             </div>
                                         </div>
                                     );
@@ -67,16 +86,25 @@ export class NowPlaying extends Component {
                                 {backdrop35.map(obj => {
                                     return (
                                         <div key={obj.id} className="backdrop">
-                                            <img
-                                                className="img-shadow"
-                                                alt="movie_poster"
-                                                src={`${base_url}${backdrop_size}${obj.backdrop_path}`}
-                                            />
+                                            <Link to={`/detail/${obj.id}`}>
+                                                <img
+                                                    className="img-shadow"
+                                                    alt="movie_poster"
+                                                    src={`${base_url}${backdrop_size}${obj.backdrop_path}`}
+                                                />
+                                            </Link>
                                             <div>
                                                 <p>
                                                     Rating: {obj.vote_average}
                                                 </p>
-                                                <h4>{obj.title}</h4>
+                                                <h4>
+                                                    <Link
+                                                        to={`/detail/${obj.id}`}
+                                                        className="link-style"
+                                                    >
+                                                        {obj.title}
+                                                    </Link>
+                                                </h4>
                                             </div>
                                         </div>
                                     );
