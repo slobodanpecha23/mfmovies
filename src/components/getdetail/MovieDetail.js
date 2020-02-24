@@ -6,15 +6,15 @@ import { movieDetail, movieCrew } from "../../actions/actions";
 
 const mapDispatchToProps = dispatch => {
     return {
-        onMovieDetails: () => dispatch(movieDetail()),
-        onMovieCrew: () => dispatch(movieCrew())
+        onMovieDetails: id => dispatch(movieDetail(id)),
+        onMovieCrew: id => dispatch(movieCrew(id))
     };
 };
 
-export class GetDetail extends Component {
+export class MovieDetail extends Component {
     componentDidMount() {
-        this.props.onMovieDetails();
-        this.props.onMovieCrew();
+        this.props.onMovieDetails(this.props.match.params.id);
+        this.props.onMovieCrew(this.props.match.params.id);
     }
 
     render() {
@@ -27,4 +27,4 @@ export class GetDetail extends Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(GetDetail);
+export default connect(null, mapDispatchToProps)(MovieDetail);

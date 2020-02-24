@@ -3,6 +3,7 @@ import { Carousel } from "react-responsive-carousel";
 import "../../../node_modules/react-responsive-carousel/lib/styles/carousel.min.css";
 import "./style/carousel.scss";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const mapStateToProps = state => {
     return {
@@ -42,7 +43,14 @@ export class CarouselArea extends Component {
                                         alt="movie_wallpaper"
                                         src={`${base_url}${backdrop_size}${obj.backdrop_path}`}
                                     />
-                                    <p className="legend">{obj.title}</p>
+                                    <p className="legend">
+                                        <Link
+                                            to={`/detail/${obj.id}`}
+                                            className="link-style-1"
+                                        >
+                                            {obj.title}
+                                        </Link>
+                                    </p>
                                 </div>
                             );
                         })}
