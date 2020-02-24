@@ -9,6 +9,7 @@ import TopRated from "./components/toprated/TopRated";
 import Footer from "./components/footer/Footer";
 import MovieDetail from "./components/getdetail/MovieDetail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ActorsDetails from "./components/actors/ActorsDetails";
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -33,6 +34,10 @@ export class App extends Component {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/detail/:id" component={MovieDetail} />
+                        <Route
+                            path="/actor_details/:id"
+                            component={ActorsDetails}
+                        />
                     </Switch>
                     <Footer />
                 </div>

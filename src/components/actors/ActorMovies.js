@@ -1,30 +1,29 @@
 import React, { Component } from "react";
-import "./style/cast.scss";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const mapStateToProps = state => {
     return {
         config: state.getImgDataReducer.config,
-        cast: state.castReducer.cast
+        actor_movies: state.actorMoviesReducer.actor_movies
     };
 };
 
-export class Cast extends Component {
+export class ActorMovies extends Component {
     render() {
-        const { config, cast } = this.props;
+        const { config, actor_movies } = this.props;
         if (
             config.images &&
             config.images.base_url &&
-            cast.cast &&
-            cast.cast.length
+            actor_movies.cast &&
+            actor_movies.cast.length
         ) {
             const base_url = config.images.base_url;
             const profile_size = config.images.profile_sizes[1];
-            const profile = cast.cast.map(obj => obj).slice(0, 5);
+            const profile = actor_movies.cast.map(obj => obj).slice(0, 5);
             return (
                 <div className="cast-section">
-                    <h1 className="popular-heading">Top Billed Cast</h1>
+                    <h1 className="popular-heading">The most famous roles</h1>
                     <div className="cast-section__profile">
                         {profile.map(obj => {
                             return (
@@ -32,21 +31,20 @@ export class Cast extends Component {
                                     key={obj.id}
                                     className="cast-section__profile--inside"
                                 >
-                                    <Link to={`/actor_details/${obj.id}`}>
+                                    <Link to={`/detail/${obj.id}`}>
                                         <img
                                             alt="profile"
-                                            src={`${base_url}${profile_size}${obj.profile_path}`}
+                                            src={`${base_url}${profile_size}${obj.poster_path}`}
                                         />
                                     </Link>
                                     <h4 className="pad-el">
                                         <Link
-                                            to={`/actor_details/${obj.id}`}
+                                            to={`/detail/${obj.id}`}
                                             className="link-style"
                                         >
-                                            {obj.name}
+                                            {obj.title}
                                         </Link>
                                     </h4>
-                                    <p className="pad-el">{obj.character}</p>
                                 </div>
                             );
                         })}
@@ -56,11 +54,11 @@ export class Cast extends Component {
         } else {
             return (
                 <div className="loading1">
-                    <h1>You will see cast very soon...</h1>
+                    <h1>You will see movies very soon...</h1>
                 </div>
             );
         }
     }
 }
 
-export default connect(mapStateToProps)(Cast);
+export default connect(mapStateToProps)(ActorMovies);

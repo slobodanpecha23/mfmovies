@@ -9,7 +9,11 @@ import {
     MOVIE_DETAIL_SUCCESS,
     MOVIE_DETAIL_FAILED,
     CAST_SUCCESS,
-    CAST_FAILED
+    CAST_FAILED,
+    ACTOR_DETAILS_SUCCESS,
+    ACTOR_DETAILS_FAILED,
+    ACTOR_MOVIES_SUCCESS,
+    ACTOR_MOVIES_FAILED
 } from "../constants/action_types";
 
 const initialState = {
@@ -85,6 +89,34 @@ export const castReducer = (state = movieDetailState, action = {}) => {
         case CAST_SUCCESS:
             return { ...state, cast: action.payload };
         case CAST_FAILED:
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+const actorDetailsState = {
+    actor_details: {},
+    actor_movies: {},
+    error: ""
+};
+
+export const actorDetailsReducer = (state = actorDetailsState, action = {}) => {
+    switch (action.type) {
+        case ACTOR_DETAILS_SUCCESS:
+            return { ...state, actor_details: action.payload };
+        case ACTOR_DETAILS_FAILED:
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const actorMoviesReducer = (state = actorDetailsState, action = {}) => {
+    switch (action.type) {
+        case ACTOR_MOVIES_SUCCESS:
+            return { ...state, actor_movies: action.payload };
+        case ACTOR_MOVIES_FAILED:
             return { ...state, error: action.payload };
         default:
             return state;

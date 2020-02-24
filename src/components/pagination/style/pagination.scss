@@ -1,0 +1,22 @@
+@import "../../../sass/variables.scss";
+
+.popular-poster {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px;
+    flex-wrap: wrap;
+
+    @media only screen and(max-width: $bp-now-playing-large) {
+        flex-wrap: wrap;
+    }
+
+    &__inside {
+        padding: 10px;
+        max-width: 154px;
+    }
+}
+
+.popular-section {
+    display: flex;
+    flex-direction: column;
+}

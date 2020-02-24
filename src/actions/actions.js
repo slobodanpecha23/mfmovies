@@ -9,7 +9,11 @@ import {
     MOVIE_DETAIL_SUCCESS,
     MOVIE_DETAIL_FAILED,
     CAST_SUCCESS,
-    CAST_FAILED
+    CAST_FAILED,
+    ACTOR_DETAILS_SUCCESS,
+    ACTOR_DETAILS_FAILED,
+    ACTOR_MOVIES_SUCCESS,
+    ACTOR_MOVIES_FAILED
 } from "../constants/action_types";
 import {
     getConfig,
@@ -17,7 +21,9 @@ import {
     getNowPlayingData,
     getTopRatedData,
     getMovieDetail,
-    getCast
+    getCast,
+    getActorDetails,
+    getActorMovies
 } from "../utils/ApiUtils";
 
 export const getImgData = () => dispatch => {
@@ -68,4 +74,22 @@ export const movieCrew = id => dispatch => {
         .then(response => response.json())
         .then(data => dispatch({ type: CAST_SUCCESS, payload: data }))
         .catch(error => dispatch({ type: CAST_FAILED, payload: error }));
+};
+
+export const actorDetails = id => dispatch => {
+    fetch(getActorDetails(id))
+        .then(response => response.json())
+        .then(data => dispatch({ type: ACTOR_DETAILS_SUCCESS, payload: data }))
+        .catch(error =>
+            dispatch({ type: ACTOR_DETAILS_FAILED, payload: error })
+        );
+};
+
+export const actorMovies = id => dispatch => {
+    fetch(getActorMovies(id))
+        .then(response => response.json())
+        .then(data => dispatch({ type: ACTOR_MOVIES_SUCCESS, payload: data }))
+        .catch(error =>
+            dispatch({ type: ACTOR_MOVIES_FAILED, payload: error })
+        );
 };

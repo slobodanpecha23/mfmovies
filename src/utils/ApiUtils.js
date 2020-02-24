@@ -16,3 +16,9 @@ export const getMovieDetail = id =>
 
 export const getCast = id =>
     `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
+
+export const getActorDetails = id =>
+    `${BASE_URL}person/${id}?api_key=${API_KEY}&language=en-US`;
+
+export const getActorMovies = id =>
+    `${BASE_URL}person/${id}/movie_credits?api_key=${API_KEY}&language=en-US`;
