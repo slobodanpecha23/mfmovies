@@ -7,13 +7,13 @@
     flex-direction: column;
     background-color: $header-background;
 
-    &--logo {
+    &__logo {
         font-family: "Strawberry Shortcake";
         font-size: 25px;
         color: $primary-color;
     }
 
-    &--text {
+    &__text {
         color: $primary-color;
         font-size: 12px;
         border-top: 1px solid $border-color;

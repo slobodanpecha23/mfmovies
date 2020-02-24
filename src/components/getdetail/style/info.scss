@@ -1,0 +1,85 @@
+@import "../../../sass/variables.scss";
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px;
+
+    @media only screen and(max-width: $bp-now-playing-large) {
+        flex-wrap: wrap;
+    }
+
+    &__left-side {
+        @media only screen and(max-width: $bp-now-playing-large) {
+            order: 1;
+        }
+    }
+
+    &__right-side {
+        max-width: 600px;
+        padding: 15px;
+        box-shadow: 0 10px 18px $header-background;
+        border-radius: 5%;
+
+        @media only screen and(max-width: $bp-now-playing-large) {
+            margin-bottom: 20px;
+        }
+
+        &:hover {
+            box-shadow: 0 5px 10px $header-background;
+        }
+    }
+}
+
+.title {
+    line-height: 10px;
+
+    &__elem {
+        display: flex;
+        line-height: normal;
+
+        @media only screen and(max-width: $bp-extra-small) {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+.genres {
+    display: flex;
+
+    &__name {
+        margin-right: 10px;
+    }
+}
+
+.img-shadow {
+    box-shadow: 0 10px 18px $header-background;
+
+    &:hover {
+        box-shadow: 0 5px 10px $header-background;
+    }
+}
+
+.opacity {
+    opacity: 0.5;
+}
+
+.italic {
+    font-style: italic;
+    color: $primary-color;
+}
+
+.overview {
+    // display: flex;
+}
+
+.production {
+    &__logo {
+        display: flex;
+
+        &--img {
+            margin-right: 15px;
+        }
+    }
+}

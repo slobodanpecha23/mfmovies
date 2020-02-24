@@ -5,13 +5,19 @@ import {
     NOW_PLAYING_DATA_SUCCESS,
     NOW_PLAYING_DATA_FAILED,
     TOP_RATED_DATA_SUCCESS,
-    TOP_RATED_DATA_FAILED
+    TOP_RATED_DATA_FAILED,
+    MOVIE_DETAIL_SUCCESS,
+    MOVIE_DETAIL_FAILED,
+    CAST_SUCCESS,
+    CAST_FAILED
 } from "../constants/action_types";
 import {
     getConfig,
     getPopularData,
     getNowPlayingData,
-    getTopRatedData
+    getTopRatedData,
+    getMovieDetail,
+    getCast
 } from "../utils/ApiUtils";
 
 export const getImgData = () => dispatch => {
@@ -46,4 +52,20 @@ export const getTopRated = () => dispatch => {
         .catch(error =>
             dispatch({ type: TOP_RATED_DATA_FAILED, payload: error })
         );
+};
+
+export const movieDetail = () => dispatch => {
+    fetch(getMovieDetail())
+        .then(response => response.json())
+        .then(data => dispatch({ type: MOVIE_DETAIL_SUCCESS, payload: data }))
+        .catch(error =>
+            dispatch({ type: MOVIE_DETAIL_FAILED, payload: error })
+        );
+};
+
+export const movieCrew = () => dispatch => {
+    fetch(getCast())
+        .then(response => response.json())
+        .then(data => dispatch({ type: CAST_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: CAST_FAILED, payload: error }));
 };

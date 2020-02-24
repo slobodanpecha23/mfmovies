@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Header from "./components/header/Header";
-import CarouselArea from "./components/carousel/CarouselArea";
 import { connect } from "react-redux";
 import { getImgData, getNowPlaying, getTopRated } from "./actions/actions";
-import Popular from "./components/popular/Popular";
-import NowPlaying from "./components/nowplaying/NowPlaying";
-import TopRated from "./components/toprated/TopRated";
+// import CarouselArea from "./components/carousel/CarouselArea";
+// import Popular from "./components/popular/Popular";
+// import NowPlaying from "./components/nowplaying/NowPlaying";
+// import TopRated from "./components/toprated/TopRated";
 import Footer from "./components/footer/Footer";
+import GetDetail from "./components/getdetail/MovieDetail";
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -27,10 +28,11 @@ export class App extends Component {
         return (
             <div className="App">
                 <Header />
-                <CarouselArea />
+                {/* <CarouselArea />
                 <Popular />
                 <NowPlaying />
-                <TopRated />
+                <TopRated /> */}
+                <GetDetail />
                 <Footer />
             </div>
         );

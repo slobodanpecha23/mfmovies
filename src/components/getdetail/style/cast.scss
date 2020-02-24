@@ -1,0 +1,40 @@
+@import "../../../sass/variables.scss";
+
+.cast-section {
+    margin-bottom: 15px;
+
+    &__profile {
+        display: flex;
+        justify-content: space-around;
+
+        @media only screen and(max-width: $bp-now-playing-large) {
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        &--inside {
+            border-radius: 5px;
+            background-color: $primary-color-1;
+            box-shadow: 0 10px 18px $header-background;
+            overflow: hidden;
+
+            @media only screen and(max-width: $bp-now-playing-large) {
+                margin-bottom: 15px;
+            }
+
+            &:hover {
+                box-shadow: 0 5px 10px $header-background;
+            }
+        }
+    }
+}
+
+.pad-el {
+    padding-left: 5px;
+}
+
+.popular-heading {
+    background: linear-gradient(to right, $black-background, $color-white);
+    color: $color-white;
+    padding: 10px;
+}
