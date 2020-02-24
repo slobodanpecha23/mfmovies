@@ -3,7 +3,9 @@ import {
     getNowPlayingReducer,
     getTopRatedReducer,
     movieDetailReducer,
-    castReducer
+    castReducer,
+    actorDetailsReducer,
+    actorMoviesReducer
 } from "./reducers";
 import { combineReducers } from "redux";
 
@@ -12,7 +14,9 @@ const rootReducer = combineReducers({
     getNowPlayingReducer,
     getTopRatedReducer,
     movieDetailReducer,
-    castReducer
+    castReducer,
+    actorDetailsReducer,
+    actorMoviesReducer
 });
 
 export default rootReducer;
