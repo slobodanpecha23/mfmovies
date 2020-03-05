@@ -5,7 +5,11 @@ import {
     movieDetailReducer,
     castReducer,
     actorDetailsReducer,
-    actorMoviesReducer
+    actorMoviesReducer,
+    popularPageReducer,
+    nowPlayingPageReducer,
+    topPageReducer,
+    suggestionReducer
 } from "./reducers";
 import { combineReducers } from "redux";
 
@@ -16,7 +20,11 @@ const rootReducer = combineReducers({
     movieDetailReducer,
     castReducer,
     actorDetailsReducer,
-    actorMoviesReducer
+    actorMoviesReducer,
+    popularPageReducer,
+    nowPlayingPageReducer,
+    topPageReducer,
+    suggestionReducer
 });
 
 export default rootReducer;

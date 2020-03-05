@@ -66,7 +66,7 @@ export class MovieInfo extends Component {
                                     src={
                                         movie_detail.production_companies
                                             .length === 0
-                                            ? "x"
+                                            ? ""
                                             : `${base_url}${logo_size}${movie_detail.production_companies[0].logo_path}`
                                     }
                                 />

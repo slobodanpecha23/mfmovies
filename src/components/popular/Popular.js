@@ -22,10 +22,17 @@ export class Popular extends Component {
         ) {
             const base_url = config.images.base_url;
             const backdrop_size = config.images.logo_sizes[4];
-            const poster = popular.results.map(movie => movie).slice(5, 9);
+            const poster = popular.results.slice(5, 9);
             return (
                 <div className="popular-section">
-                    <h1 className="popular-heading">Popular</h1>
+                    <h1 className="popular-heading">
+                        <Link
+                            to={`/popular_movies`}
+                            className="link-style__popular"
+                        >
+                            Popular
+                        </Link>
+                    </h1>
                     <div className="poster-section">
                         {poster.map(obj => {
                             return (

@@ -38,4 +38,9 @@
 .link-style {
     text-decoration: none;
     color: $header-background;
+
+    &__popular {
+        color: $color-white;
+        text-decoration: none;
+    }
 }

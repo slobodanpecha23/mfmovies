@@ -10,6 +10,9 @@ import Footer from "./components/footer/Footer";
 import MovieDetail from "./components/getdetail/MovieDetail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ActorsDetails from "./components/actors/ActorsDetails";
+import ListOfPopular from "./components/pagination/ListOfPopular";
+import ListOfNowPlaying from "./components/pagination/ListOfNowPlaying";
+import ListOfTopRated from "./components/pagination/ListOfTopRated";
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -37,6 +40,18 @@ export class App extends Component {
                         <Route
                             path="/actor_details/:id"
                             component={ActorsDetails}
+                        />
+                        <Route
+                            path="/popular_movies"
+                            component={ListOfPopular}
+                        />
+                        <Route
+                            path="/now_playing_movies"
+                            component={ListOfNowPlaying}
+                        />
+                        <Route
+                            path="/top_rated_movies"
+                            component={ListOfTopRated}
                         />
                     </Switch>
                     <Footer />

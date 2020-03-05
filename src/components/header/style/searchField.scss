@@ -1,8 +1,6 @@
 @import "../../../sass/variables.scss";
 
 input {
-    position: relative;
-    display: inline-block;
     font-size: 20px;
     box-sizing: border-box;
     transition: all 0.5s;
@@ -12,7 +10,7 @@ input {
     }
 
     &[type="text"] {
-        background: #fff;
+        background: $color-white;
         width: 350px;
         height: 40px;
         border: none;
@@ -30,7 +28,6 @@ input {
     }
 
     &[type="submit"] {
-        position: relative;
         border-radius: 0 25px 25px 0;
         height: 40px;
         width: 100px;
@@ -52,11 +49,57 @@ input {
 }
 
 .searchForm {
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
     @media only screen and(max-width: 600px) {
         order: 1;
         flex: 0 0 100%;
         margin-bottom: 5px;
+        text-align: center;
+    }
+}
+
+.suggestion {
+    z-index: 10;
+    background: $frame-background;
+    width: 450px;
+    position: absolute;
+    opacity: 90%;
+    border-radius: 5px;
+    text-align: center;
+    transform: translate(0, 45px);
+    display: flex;
+    flex-direction: column;
+
+    @media only screen and(max-width: $bp-medium) {
+        width: 320px;
+        transform: translate(0, 35px);
+    }
+
+    &__movie {
         display: flex;
-        justify-content: center;
+        margin: 5px;
+        align-items: center;
+
+        &:hover {
+            background: $hover-suggestion-color;
+            color: $color-white;
+        }
+    }
+}
+
+.title-padding {
+    padding-left: 10px;
+}
+
+.link-style-suggestion {
+    text-decoration: none;
+    color: $header-background;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid $color-white;
     }
 }
