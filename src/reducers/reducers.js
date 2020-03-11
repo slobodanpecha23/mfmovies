@@ -22,7 +22,10 @@ import {
     TOP_FAILED,
     SUGGESTION_SUCCESS,
     SUGGESTION_FAILED,
-    SUGGESTION_CLEAR
+    SUGGESTION_CLEAR,
+    CREATE_SESSION_ID_SUCCESS,
+    CREATE_SESSION_ID_FAILED,
+    CLEAR_SESSION_ID
 } from "../constants/action_types";
 
 const initialState = {
@@ -198,6 +201,25 @@ export const suggestionReducer = (state = moviesState, action = {}) => {
             return { ...state, error: action.payload };
         case SUGGESTION_CLEAR:
             return { ...state, movies: {} };
+        default:
+            return state;
+    }
+};
+
+///====================
+
+const sessionState = {
+    sessionId: ""
+};
+
+export const sessionReducer = (state = sessionState, action = {}) => {
+    switch (action.type) {
+        case CREATE_SESSION_ID_SUCCESS:
+            return { ...state, sessionId: action.payload.session_id };
+        case CREATE_SESSION_ID_FAILED:
+            return { ...state, error: action.payload };
+        case CLEAR_SESSION_ID:
+            return { ...state, sessionId: "" };
         default:
             return state;
     }

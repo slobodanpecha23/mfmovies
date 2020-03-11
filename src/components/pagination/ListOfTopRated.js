@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getTopPagination } from "../../actions/actions";
 import { Link } from "react-router-dom";
-import PopularList from "./PopularList";
+import Paginator from "./Paginator";
 
 const mapStateToProps = state => {
     return {
@@ -64,7 +64,7 @@ export class ListOfTopRated extends Component {
                             })}
                         </div>
                     </div>
-                    <PopularList
+                    <Paginator
                         onGetMovies={this.props.onGetTopRatedMovies}
                         category="top_rated"
                         data={data}

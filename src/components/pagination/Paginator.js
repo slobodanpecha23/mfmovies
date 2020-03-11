@@ -3,7 +3,7 @@ import Pagination from "react-pagination-js";
 import "react-pagination-js/dist/styles.css";
 import "./style/paginator.scss";
 
-export class PopularList extends Component {
+export class Paginator extends Component {
     state = {
         currentPage: 1
     };
@@ -34,4 +34,4 @@ export class PopularList extends Component {
     }
 }
 
-export default PopularList;
+export default Paginator;

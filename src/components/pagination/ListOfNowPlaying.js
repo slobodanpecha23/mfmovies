@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getNowPagination } from "../../actions/actions";
 import { Link } from "react-router-dom";
-import { PopularList } from "./PopularList";
+import { Paginator } from "./Paginator";
 
 const mapStateToProps = state => {
     return {
@@ -64,7 +64,7 @@ export class ListOfNowPlaying extends Component {
                             })}
                         </div>
                     </div>
-                    <PopularList
+                    <Paginator
                         onGetMovies={this.props.onGetNowPagination}
                         category="now_playing"
                         data={data}

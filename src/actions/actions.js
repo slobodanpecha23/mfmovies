@@ -22,7 +22,10 @@ import {
     TOP_FAILED,
     SUGGESTION_SUCCESS,
     SUGGESTION_FAILED,
-    SUGGESTION_CLEAR
+    SUGGESTION_CLEAR,
+    CREATE_SESSION_ID_SUCCESS,
+    CREATE_SESSION_ID_FAILED,
+    CLEAR_SESSION_ID
 } from "../constants/action_types";
 import {
     getConfig,
@@ -34,7 +37,8 @@ import {
     getActorDetails,
     getActorMovies,
     moviePage,
-    suggestion
+    suggestion,
+    session
 } from "../utils/ApiUtils";
 
 export const getImgData = () => dispatch => {
@@ -128,6 +132,8 @@ export const getTopPagination = (category, pn) => dispatch => {
         .catch(error => dispatch({ type: TOP_FAILED, payload: error }));
 };
 
+//search suggestion
+
 export const getSuggestion = query => dispatch => {
     fetch(suggestion(query))
         .then(response => response.json())
@@ -137,4 +143,27 @@ export const getSuggestion = query => dispatch => {
 
 export const clearSuggestion = () => dispatch => {
     dispatch({ type: SUGGESTION_CLEAR });
+};
+
+///=====================
+
+export const clearSessionId = () => dispatch => {
+    dispatch({ type: CLEAR_SESSION_ID });
+};
+
+export const getSessionId = token => dispatch => {
+    fetch(session(), {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(token)
+    })
+        .then(response => response.json())
+        .then(data =>
+            dispatch({ type: CREATE_SESSION_ID_SUCCESS, payload: data })
+        )
+        .catch(error =>
+            dispatch({ type: CREATE_SESSION_ID_FAILED, payload: error })
+        );
 };

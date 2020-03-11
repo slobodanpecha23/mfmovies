@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPopularPagination } from "../../actions/actions";
-import PopularList from "./PopularList";
+import Paginator from "./Paginator";
 import { Link } from "react-router-dom";
 import "./style/pagination.scss";
 
@@ -65,7 +65,7 @@ export class ListOfPopular extends Component {
                             })}
                         </div>
                     </div>
-                    <PopularList
+                    <Paginator
                         onGetMovies={this.props.onGetPopularMovies}
                         category="popular"
                         data={data}
