@@ -208,18 +208,24 @@ export const suggestionReducer = (state = moviesState, action = {}) => {
 
 ///====================
 
-const sessionState = {
-    sessionId: ""
-};
+// Check localStorage for saved Session Id, else return empty string
+const storedSessionId = JSON.parse(localStorage.getItem("sessionId")) || "";
 
-export const sessionReducer = (state = sessionState, action = {}) => {
+export const sessionReducer = (state = storedSessionId, action = {}) => {
     switch (action.type) {
         case CREATE_SESSION_ID_SUCCESS:
-            return { ...state, sessionId: action.payload.session_id };
+            localStorage.setItem(
+                "sessionId",
+                JSON.stringify(action.payload.session_id)
+            );
+            state = action.payload.session_id;
+            return state;
         case CREATE_SESSION_ID_FAILED:
-            return { ...state, error: action.payload };
+            return state;
         case CLEAR_SESSION_ID:
-            return { ...state, sessionId: "" };
+            localStorage.clear();
+            state = "";
+            return state;
         default:
             return state;
     }
