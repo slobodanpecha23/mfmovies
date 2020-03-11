@@ -21,11 +21,9 @@ export class Suggestion extends Component {
                                 to={`/detail/${movie.id}`}
                                 className="link-style-suggestion"
                                 onClick={this.props.onClear}
+                                key={movie.id}
                             >
-                                <div
-                                    className="suggestion__movie"
-                                    key={movie.id}
-                                >
+                                <div className="suggestion__movie">
                                     <img
                                         src={`${base_url}${poster_size}${movie.backdrop_path}`}
                                         alt="movie"

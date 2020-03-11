@@ -13,6 +13,7 @@ import ActorsDetails from "./components/actors/ActorsDetails";
 import ListOfPopular from "./components/pagination/ListOfPopular";
 import ListOfNowPlaying from "./components/pagination/ListOfNowPlaying";
 import ListOfTopRated from "./components/pagination/ListOfTopRated";
+import Welcome from "./components/login/Welcome";
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -53,6 +54,7 @@ export class App extends Component {
                             path="/top_rated_movies"
                             component={ListOfTopRated}
                         />
+                        <Route path="/welcome" component={Welcome} />
                     </Switch>
                     <Footer />
                 </div>

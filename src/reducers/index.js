@@ -9,7 +9,8 @@ import {
     popularPageReducer,
     nowPlayingPageReducer,
     topPageReducer,
-    suggestionReducer
+    suggestionReducer,
+    sessionReducer
 } from "./reducers";
 import { combineReducers } from "redux";
 
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
     popularPageReducer,
     nowPlayingPageReducer,
     topPageReducer,
-    suggestionReducer
+    suggestionReducer,
+    sessionReducer
 });
 
 export default rootReducer;

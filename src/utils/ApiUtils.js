@@ -32,3 +32,11 @@ export const moviePage = (category, pn) =>
 
 export const suggestion = query =>
     `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
+
+////======= get token
+
+export const token = () =>
+    `${BASE_URL}authentication/token/new?api_key=${API_KEY}`;
+
+export const session = () =>
+    `${BASE_URL}authentication/session/new?api_key=${API_KEY}`;
