@@ -13,7 +13,16 @@ import {
     ACTOR_DETAILS_SUCCESS,
     ACTOR_DETAILS_FAILED,
     ACTOR_MOVIES_SUCCESS,
-    ACTOR_MOVIES_FAILED
+    ACTOR_MOVIES_FAILED,
+    POP_SUCCESS,
+    POP_FAILED,
+    NOW_SUCCESS,
+    NOW_FAILED,
+    TOP_SUCCESS,
+    TOP_FAILED,
+    SUGGESTION_SUCCESS,
+    SUGGESTION_FAILED,
+    SUGGESTION_CLEAR
 } from "../constants/action_types";
 
 const initialState = {
@@ -118,6 +127,77 @@ export const actorMoviesReducer = (state = actorDetailsState, action = {}) => {
             return { ...state, actor_movies: action.payload };
         case ACTOR_MOVIES_FAILED:
             return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+//pagination
+
+const paginationPopState = {
+    data: {},
+    error: ""
+};
+
+export const popularPageReducer = (state = paginationPopState, action = {}) => {
+    switch (action.type) {
+        case POP_SUCCESS:
+            return { ...state, data: action.payload };
+        case POP_FAILED:
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+const paginationNowState = {
+    data: {},
+    error: ""
+};
+
+export const nowPlayingPageReducer = (
+    state = paginationNowState,
+    action = {}
+) => {
+    switch (action.type) {
+        case NOW_SUCCESS:
+            return { ...state, data: action.payload };
+        case NOW_FAILED:
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+const paginationTopState = {
+    data: {},
+    error: ""
+};
+
+export const topPageReducer = (state = paginationTopState, action = {}) => {
+    switch (action.type) {
+        case TOP_SUCCESS:
+            return { ...state, data: action.payload };
+        case TOP_FAILED:
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+const moviesState = {
+    movies: {},
+    error: ""
+};
+
+export const suggestionReducer = (state = moviesState, action = {}) => {
+    switch (action.type) {
+        case SUGGESTION_SUCCESS:
+            return { ...state, movies: action.payload };
+        case SUGGESTION_FAILED:
+            return { ...state, error: action.payload };
+        case SUGGESTION_CLEAR:
+            return { ...state, movies: {} };
         default:
             return state;
     }

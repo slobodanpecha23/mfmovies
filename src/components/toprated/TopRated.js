@@ -20,10 +20,17 @@ export class TopRated extends Component {
         ) {
             const base_url = config.images.base_url;
             const backdrop_size = config.images.logo_sizes[4];
-            const poster = top_rated.results.map(movie => movie).slice(0, 4);
+            const poster = top_rated.results.slice(0, 4);
             return (
                 <div className="top-section">
-                    <h1 className="popular-heading">Top rated</h1>
+                    <h1 className="popular-heading">
+                        <Link
+                            to={`/top_rated_movies`}
+                            className="link-style__popular"
+                        >
+                            Top rated
+                        </Link>
+                    </h1>
                     <div className="poster-section">
                         {poster.map(obj => {
                             return (

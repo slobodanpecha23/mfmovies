@@ -13,7 +13,16 @@ import {
     ACTOR_DETAILS_SUCCESS,
     ACTOR_DETAILS_FAILED,
     ACTOR_MOVIES_SUCCESS,
-    ACTOR_MOVIES_FAILED
+    ACTOR_MOVIES_FAILED,
+    POP_SUCCESS,
+    POP_FAILED,
+    NOW_SUCCESS,
+    NOW_FAILED,
+    TOP_SUCCESS,
+    TOP_FAILED,
+    SUGGESTION_SUCCESS,
+    SUGGESTION_FAILED,
+    SUGGESTION_CLEAR
 } from "../constants/action_types";
 import {
     getConfig,
@@ -23,7 +32,9 @@ import {
     getMovieDetail,
     getCast,
     getActorDetails,
-    getActorMovies
+    getActorMovies,
+    moviePage,
+    suggestion
 } from "../utils/ApiUtils";
 
 export const getImgData = () => dispatch => {
@@ -92,4 +103,38 @@ export const actorMovies = id => dispatch => {
         .catch(error =>
             dispatch({ type: ACTOR_MOVIES_FAILED, payload: error })
         );
+};
+
+///======== pagination
+
+export const getPopularPagination = (category, pn) => dispatch => {
+    fetch(moviePage(category, pn))
+        .then(response => response.json())
+        .then(data => dispatch({ type: POP_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: POP_FAILED, payload: error }));
+};
+
+export const getNowPagination = (category, pn) => dispatch => {
+    fetch(moviePage(category, pn))
+        .then(response => response.json())
+        .then(data => dispatch({ type: NOW_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: NOW_FAILED, payload: error }));
+};
+
+export const getTopPagination = (category, pn) => dispatch => {
+    fetch(moviePage(category, pn))
+        .then(response => response.json())
+        .then(data => dispatch({ type: TOP_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: TOP_FAILED, payload: error }));
+};
+
+export const getSuggestion = query => dispatch => {
+    fetch(suggestion(query))
+        .then(response => response.json())
+        .then(data => dispatch({ type: SUGGESTION_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: SUGGESTION_FAILED, payload: error }));
+};
+
+export const clearSuggestion = () => dispatch => {
+    dispatch({ type: SUGGESTION_CLEAR });
 };

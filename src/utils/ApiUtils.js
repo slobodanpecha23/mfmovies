@@ -22,3 +22,13 @@ export const getActorDetails = id =>
 
 export const getActorMovies = id =>
     `${BASE_URL}person/${id}/movie_credits?api_key=${API_KEY}&language=en-US`;
+
+////======= list: popular, now playing, top rated with pagination
+
+export const moviePage = (category, pn) =>
+    `${BASE_URL}movie/${category}?api_key=${API_KEY}&language=en-US&page=${pn}`;
+
+////======= get search
+
+export const suggestion = query =>
+    `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;

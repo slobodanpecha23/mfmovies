@@ -22,16 +22,16 @@ export class NowPlaying extends Component {
             const base_url = config.images.base_url;
             const backdrop_size = config.images.backdrop_sizes[0];
             const poster_size = config.images.poster_sizes[3];
-            const poster = now_playing.results.map(movie => movie).slice(0, 1);
-            const backdrop13 = now_playing.results
-                .map(movie => movie)
-                .slice(1, 3);
-            const backdrop35 = now_playing.results
-                .map(movie => movie)
-                .slice(3, 5);
+            const poster = now_playing.results.slice(0, 1);
+            const backdrop13 = now_playing.results.slice(1, 3);
+            const backdrop35 = now_playing.results.slice(3, 5);
             return (
                 <div>
-                    <h1 className="popular-heading">Now playing</h1>
+                    <h1 className="popular-heading">
+                        <Link to={`/now_playing_movies`} className="now">
+                            Now playing
+                        </Link>
+                    </h1>
                     <div className="container">
                         <div className="left-side">
                             <Link to={`/detail/${poster[0].id}`}>
