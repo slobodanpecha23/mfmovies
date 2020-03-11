@@ -12,7 +12,7 @@ let tokenObj = {
 
 const mapStateToProps = state => {
     return {
-        sessionId: state.sessionReducer.sessionId
+        sessionId: state.sessionReducer
     };
 };
 
