@@ -1,0 +1,90 @@
+@import "../../../sass/variables.scss";
+
+.menu-bar {
+    width: 130px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    width: 35px;
+    height: 30px;
+    margin: 0px 20px 0 auto;
+    cursor: pointer;
+}
+
+.bar {
+    height: 5px;
+    width: 100%;
+    background-color: $primary-color;
+    display: block;
+    border-radius: 5px;
+    transform: translateY(7.5px);
+}
+
+.bar1 {
+    transform: translateY(3.5px);
+}
+
+.bar3 {
+    transform: translateY(11.5px);
+}
+
+.active {
+    width: 35px;
+    height: 30px;
+    margin: 0px 20px 0 auto;
+    cursor: pointer;
+    z-index: 7;
+
+    & .bar {
+        background-color: $color-white;
+    }
+
+    & .bar1 {
+        transform: translateY(12.5px) rotate(45deg);
+    }
+
+    & .bar3 {
+        transform: translateY(7.5px) rotate(-45deg);
+    }
+
+    & .bar2 {
+        display: none;
+    }
+}
+
+.nav {
+    display: none;
+}
+
+.nav-active {
+    padding: 0;
+    color: $color-white;
+    margin: 40px 20px 0 0;
+    z-index: 15;
+    position: absolute;
+
+    & p {
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
+
+.menu-bg {
+    width: 550px;
+    height: 540px;
+    background: radial-gradient(circle, $primary-color, $primary-color-1);
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    z-index: 5;
+    top: 0;
+    right: 0;
+    position: absolute;
+    transform: translate(60%, -30%);
+}
+
+.menu-bg-inactive {
+    display: none;
+}

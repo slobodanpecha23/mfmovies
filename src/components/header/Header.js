@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./style/header.scss";
 import SearchField from "./SearchField";
-import LogInButton from "./LogInButton";
 import { Link } from "react-router-dom";
+import Hamburger from "./Hamburger";
 
 export class Header extends Component {
     render() {
@@ -14,7 +14,7 @@ export class Header extends Component {
                     </Link>
                 </h3>
                 <SearchField />
-                <LogInButton />
+                <Hamburger />
             </div>
         );
     }

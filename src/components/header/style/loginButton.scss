@@ -1,26 +1,6 @@
 @import "../../../sass/variables.scss";
 
-button {
-    background: none;
-    color: $primary-color;
-    width: 120px;
-    height: 40px;
-    border: 2px solid $primary-color;
-    font-size: 15px;
-    border-radius: 4px;
-    transition: 0.6s;
-    overflow: hidden;
-    margin-right: 20px;
-
-    &:hover {
-        background: $hover-color;
-        color: $color-white;
-    }
-
-    @media only screen and(max-width: $bp-small) {
-        width: 90px;
-        height: 30px;
-        font-size: 11px;
-        margin-right: 10px;
-    }
+.btn {
+    color: $color-white;
+    border-top: 1px solid $color-white;
 }
