@@ -35,9 +35,9 @@ export class LogInButton extends Component {
     render() {
         return (
             <div className="btn">
-                <button type="button" onClick={this.handleClick}>
+                <p onClick={this.handleClick}>
                     {this.props.sessionId ? "Log Out" : "Log In"}
-                </button>
+                </p>
             </div>
         );
     }
