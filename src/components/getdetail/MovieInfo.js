@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import "./style/info.scss";
 import { connect } from "react-redux";
+import Favicon from "./Favicon";
+import Eyeicon from "./Eyeicon";
+import Listsicon from "./Listsicon";
+import AddList from "./AddList";
 
 const mapStateToProps = state => {
     return {
@@ -10,6 +14,30 @@ const mapStateToProps = state => {
 };
 
 export class MovieInfo extends Component {
+    state = {
+        activeFavicon: false,
+        activeEyeicon: false,
+        activeListsicon: false
+    };
+
+    handleFaviconClick = () => {
+        this.setState(prevState => ({
+            activeFavicon: !prevState.activeFavicon
+        }));
+    };
+
+    handleEyeiconClick = () => {
+        this.setState(prevState => ({
+            activeEyeicon: !prevState.activeEyeicon
+        }));
+    };
+
+    handleListsiconClick = () => {
+        this.setState(prevState => ({
+            activeListsicon: !prevState.activeListsicon
+        }));
+    };
+
     render() {
         const { config, movie_detail } = this.props;
         if (
@@ -29,6 +57,47 @@ export class MovieInfo extends Component {
                             alt="movie_poster"
                             src={`${base_url}${poster_size}${movie_detail.poster_path}`}
                         />
+                        <div className="icons">
+                            <div
+                                className="icon icon1"
+                                onClick={this.handleFaviconClick}
+                            >
+                                <Favicon
+                                    color={
+                                        this.state.activeFavicon
+                                            ? "#FF0000"
+                                            : "#fff"
+                                    }
+                                />
+                            </div>
+                            <div
+                                className="icon icon2"
+                                onClick={this.handleEyeiconClick}
+                            >
+                                <Eyeicon
+                                    color={
+                                        this.state.activeEyeicon
+                                            ? "#3098EA"
+                                            : "#fff"
+                                    }
+                                />
+                            </div>
+                            <div
+                                className="icon icon3"
+                                onClick={this.handleListsiconClick}
+                            >
+                                <Listsicon
+                                    color={
+                                        this.state.activeListsicon
+                                            ? "#38EA30"
+                                            : "#fff"
+                                    }
+                                />
+                                {this.state.activeListsicon ? (
+                                    <AddList />
+                                ) : null}
+                            </div>
+                        </div>
                     </div>
                     <div className="info__right-side">
                         <div className="title">

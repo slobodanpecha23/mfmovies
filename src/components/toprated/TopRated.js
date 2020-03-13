@@ -28,7 +28,7 @@ export class TopRated extends Component {
                             to={`/top_rated_movies`}
                             className="link-style__popular"
                         >
-                            Top rated
+                            Top rated ➜
                         </Link>
                     </h1>
                     <div className="poster-section">
