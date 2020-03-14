@@ -29,7 +29,7 @@ export class NowPlaying extends Component {
                 <div>
                     <h1 className="popular-heading">
                         <Link to={`/now_playing_movies`} className="now">
-                            Now playing
+                            Now playing ➜
                         </Link>
                     </h1>
                     <div className="container">

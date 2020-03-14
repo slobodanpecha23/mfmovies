@@ -11,6 +11,10 @@
     }
 
     &__left-side {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
         @media only screen and(max-width: $bp-now-playing-large) {
             order: 1;
         }
@@ -86,4 +90,20 @@
     align-items: center;
     justify-content: center;
     background: none;
+}
+
+.icons {
+    background-color: $frame-background;
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-end;
+    opacity: 80%;
+    height: 80px;
+    width: 342px;
+    transform: translateY(433px);
+    position: absolute;
+}
+
+.icon {
+    cursor: pointer;
 }

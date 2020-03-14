@@ -1,0 +1,16 @@
+@import "../../../sass/variables.scss";
+
+.add-list {
+    margin: auto 0;
+    position: absolute;
+    width: 300px;
+    background: $frame-background;
+    transform: translateY(-342px) translateX(-226px);
+    padding-left: 7px;
+    color: $color-white;
+    z-index: 3;
+}
+
+.new-list {
+    height: 30px;
+}

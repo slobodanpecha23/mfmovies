@@ -30,7 +30,7 @@ export class Popular extends Component {
                             to={`/popular_movies`}
                             className="link-style__popular"
                         >
-                            Popular
+                            Popular ➜
                         </Link>
                     </h1>
                     <div className="poster-section">
