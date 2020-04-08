@@ -25,7 +25,7 @@ export class LogInButton extends Component {
                 .then(response => response.json())
                 .then(data =>
                     window.open(
-                        `https://www.themoviedb.org/authenticate/${data.request_token}?redirect_to=http://192.168.0.30:3000/welcome`,
+                        `https://www.themoviedb.org/authenticate/${data.request_token}?redirect_to=http://192.168.8.100:3000/welcome`,
                         "_self"
                     )
                 );

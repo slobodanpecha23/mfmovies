@@ -40,3 +40,18 @@ export const token = () =>
 
 export const session = () =>
     `${BASE_URL}authentication/session/new?api_key=${API_KEY}`;
+
+////======= mark fav
+
+export const favMovie = sId =>
+    `${BASE_URL}account/{account_id}/favorite?api_key=${API_KEY}&session_id=${sId}`;
+
+////======= watchlist movie
+
+export const watchlist = sId =>
+    `${BASE_URL}account/{account_id}/watchlist?api_key=${API_KEY}&session_id=${sId}`;
+
+////======= account states
+
+export const accountStates = (sId, movieId) =>
+    `${BASE_URL}movie/${movieId}/account_states?api_key=${API_KEY}&session_id=${sId}`;

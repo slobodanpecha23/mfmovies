@@ -25,7 +25,13 @@ import {
     SUGGESTION_CLEAR,
     CREATE_SESSION_ID_SUCCESS,
     CREATE_SESSION_ID_FAILED,
-    CLEAR_SESSION_ID
+    CLEAR_SESSION_ID,
+    ACCOUNT_STATES_SUCCESS,
+    ACCOUNT_STATES_FAILED,
+    CHANGE_ACCOUNT_STATE,
+    CHANGE_ACCOUNT_STATE_1,
+    CHANGE_ACCOUNT_STATE_2,
+    CHANGE_ACCOUNT_STATE_3
 } from "../constants/action_types";
 
 const initialState = {
@@ -223,6 +229,37 @@ export const sessionReducer = (state = storedSessionId, action = {}) => {
             localStorage.clear();
             state = "";
             return state;
+        default:
+            return state;
+    }
+};
+
+////===========================
+
+const accountState = {
+    favorites: false,
+    viewed: false,
+    error: ""
+};
+
+export const accountStatesReducer = (state = accountState, action = {}) => {
+    switch (action.type) {
+        case ACCOUNT_STATES_SUCCESS:
+            return {
+                ...state,
+                favorites: action.payload.favorite,
+                viewed: action.payload.watchlist
+            };
+        case ACCOUNT_STATES_FAILED:
+            return { ...state, error: action.payload };
+        case CHANGE_ACCOUNT_STATE:
+            return { ...state, favorites: true };
+        case CHANGE_ACCOUNT_STATE_1:
+            return { ...state, favorites: false };
+        case CHANGE_ACCOUNT_STATE_2:
+            return { ...state, viewed: true };
+        case CHANGE_ACCOUNT_STATE_3:
+            return { ...state, viewed: false };
         default:
             return state;
     }

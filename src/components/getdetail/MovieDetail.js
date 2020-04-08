@@ -20,7 +20,7 @@ export class MovieDetail extends Component {
     render() {
         return (
             <div>
-                <MovieInfo />
+                <MovieInfo movieId={this.props.match.params.id} />
                 <Cast />
             </div>
         );

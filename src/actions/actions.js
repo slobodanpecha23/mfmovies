@@ -25,7 +25,17 @@ import {
     SUGGESTION_CLEAR,
     CREATE_SESSION_ID_SUCCESS,
     CREATE_SESSION_ID_FAILED,
-    CLEAR_SESSION_ID
+    CLEAR_SESSION_ID,
+    MARK_FAV_SUCCESS,
+    MARK_FAV_FAILED,
+    ACCOUNT_STATES_SUCCESS,
+    ACCOUNT_STATES_FAILED,
+    CHANGE_ACCOUNT_STATE,
+    CHANGE_ACCOUNT_STATE_1,
+    CHANGE_ACCOUNT_STATE_2,
+    CHANGE_ACCOUNT_STATE_3,
+    MARK_VIEWED_SUCCESS,
+    MARK_VIEWED_FAILED
 } from "../constants/action_types";
 import {
     getConfig,
@@ -38,7 +48,10 @@ import {
     getActorMovies,
     moviePage,
     suggestion,
-    session
+    session,
+    favMovie,
+    accountStates,
+    watchlist
 } from "../utils/ApiUtils";
 
 export const getImgData = () => dispatch => {
@@ -166,4 +179,65 @@ export const getSessionId = token => dispatch => {
         .catch(error =>
             dispatch({ type: CREATE_SESSION_ID_FAILED, payload: error })
         );
+};
+
+////=================== fav
+
+export const markAsFav = (id, sId) => dispatch => {
+    fetch(favMovie(sId), {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            media_type: "movie",
+            media_id: id,
+            favorite: true
+        })
+    })
+        .then(response => response.json())
+        .then(data => dispatch({ type: MARK_FAV_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: MARK_FAV_FAILED, payload: error }));
+};
+
+export const markAsViewed = (id, sId) => dispatch => {
+    fetch(watchlist(sId), {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            media_type: "movie",
+            media_id: id,
+            watchlist: true
+        })
+    })
+        .then(response => response.json())
+        .then(data => dispatch({ type: MARK_VIEWED_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: MARK_VIEWED_FAILED, payload: error }));
+};
+
+export const getAccountState = (sid, movieId) => dispatch => {
+    fetch(accountStates(sid, movieId))
+        .then(response => response.json())
+        .then(data => dispatch({ type: ACCOUNT_STATES_SUCCESS, payload: data }))
+        .catch(error =>
+            dispatch({ type: ACCOUNT_STATES_FAILED, payload: error })
+        );
+};
+
+export const changeAccountState = () => dispatch => {
+    dispatch({ type: CHANGE_ACCOUNT_STATE });
+};
+
+export const changeAccountState1 = () => dispatch => {
+    dispatch({ type: CHANGE_ACCOUNT_STATE_1 });
+};
+
+export const changeAccountState2 = () => dispatch => {
+    dispatch({ type: CHANGE_ACCOUNT_STATE_2 });
+};
+
+export const changeAccountState3 = () => dispatch => {
+    dispatch({ type: CHANGE_ACCOUNT_STATE_3 });
 };
