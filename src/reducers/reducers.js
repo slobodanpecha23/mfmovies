@@ -31,7 +31,11 @@ import {
     CHANGE_ACCOUNT_STATE,
     CHANGE_ACCOUNT_STATE_1,
     CHANGE_ACCOUNT_STATE_2,
-    CHANGE_ACCOUNT_STATE_3
+    CHANGE_ACCOUNT_STATE_3,
+    FAV_MOVIES_SUCCESS,
+    FAV_MOVIES_FAILED,
+    WATCHLIST_FAILED,
+    WATCHLIST_SUCCESS
 } from "../constants/action_types";
 
 const initialState = {
@@ -260,6 +264,38 @@ export const accountStatesReducer = (state = accountState, action = {}) => {
             return { ...state, viewed: true };
         case CHANGE_ACCOUNT_STATE_3:
             return { ...state, viewed: false };
+        default:
+            return state;
+    }
+};
+
+const favState = {
+    data: {},
+    error: ""
+};
+
+export const favoritesReducer = (state = favState, action = {}) => {
+    switch (action.type) {
+        case FAV_MOVIES_SUCCESS:
+            return { ...state, data: action.payload };
+        case FAV_MOVIES_FAILED:
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+const watchlistState = {
+    data: {},
+    error: ""
+};
+
+export const watchlistReducer = (state = watchlistState, action = {}) => {
+    switch (action.type) {
+        case WATCHLIST_SUCCESS:
+            return { ...state, data: action.payload };
+        case WATCHLIST_FAILED:
+            return { ...state, error: action.payload };
         default:
             return state;
     }

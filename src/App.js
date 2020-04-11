@@ -14,6 +14,8 @@ import ListOfPopular from "./components/pagination/ListOfPopular";
 import ListOfNowPlaying from "./components/pagination/ListOfNowPlaying";
 import ListOfTopRated from "./components/pagination/ListOfTopRated";
 import Welcome from "./components/login/Welcome";
+import Favorites from "./components/favoriteswatchlist/Favorites";
+import Watchlist from "./components/favoriteswatchlist/Watchlist";
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -55,6 +57,8 @@ export class App extends Component {
                             component={ListOfTopRated}
                         />
                         <Route path="/welcome" component={Welcome} />
+                        <Route path="/favorites" component={Favorites} />
+                        <Route path="/watchlist" component={Watchlist} />
                     </Switch>
                     <Footer />
                 </div>

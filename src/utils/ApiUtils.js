@@ -42,14 +42,20 @@ export const session = () =>
     `${BASE_URL}authentication/session/new?api_key=${API_KEY}`;
 
 ////======= mark fav
-
+////=================== sId = session id, pn = page number
 export const favMovie = sId =>
     `${BASE_URL}account/{account_id}/favorite?api_key=${API_KEY}&session_id=${sId}`;
+
+export const getFavorites = (sId, pn) =>
+    `${BASE_URL}account/{account_id}/favorite/movies?api_key=${API_KEY}&session_id=${sId}&language=en-US&sort_by=created_at.asc&page=${pn}`;
 
 ////======= watchlist movie
 
 export const watchlist = sId =>
     `${BASE_URL}account/{account_id}/watchlist?api_key=${API_KEY}&session_id=${sId}`;
+
+export const getWatchlist = (sId, pn) =>
+    `${BASE_URL}account/{account_id}/watchlist/movies?api_key=${API_KEY}&language=en-US&session_id=${sId}&sort_by=created_at.asc&page=${pn}`;
 
 ////======= account states
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./style/hamburger.scss";
 import LogInButton from "./LogInButton";
+import { Link } from "react-router-dom";
 
 export class Hamburger extends Component {
     state = {
@@ -32,8 +33,12 @@ export class Hamburger extends Component {
                     <div
                         className={this.state.toggleNav ? "nav" : "nav-active"}
                     >
-                        <p>Favorites</p>
-                        <p>Watchlist</p>
+                        <Link to="/favorites" className="favstyle">
+                            <p>Favorites</p>
+                        </Link>
+                        <Link to="/watchlist" className="watchlistStyle">
+                            <p>Watchlist</p>
+                        </Link>
                         <p>My lists</p>
                         <LogInButton />
                     </div>

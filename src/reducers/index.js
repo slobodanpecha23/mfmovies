@@ -11,7 +11,9 @@ import {
     topPageReducer,
     suggestionReducer,
     sessionReducer,
-    accountStatesReducer
+    accountStatesReducer,
+    favoritesReducer,
+    watchlistReducer
 } from "./reducers";
 import { combineReducers } from "redux";
 
@@ -28,7 +30,9 @@ const rootReducer = combineReducers({
     topPageReducer,
     suggestionReducer,
     sessionReducer,
-    accountStatesReducer
+    accountStatesReducer,
+    favoritesReducer,
+    watchlistReducer
 });
 
 export default rootReducer;

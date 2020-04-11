@@ -35,7 +35,11 @@ import {
     CHANGE_ACCOUNT_STATE_2,
     CHANGE_ACCOUNT_STATE_3,
     MARK_VIEWED_SUCCESS,
-    MARK_VIEWED_FAILED
+    MARK_VIEWED_FAILED,
+    FAV_MOVIES_SUCCESS,
+    FAV_MOVIES_FAILED,
+    WATCHLIST_SUCCESS,
+    WATCHLIST_FAILED
 } from "../constants/action_types";
 import {
     getConfig,
@@ -51,7 +55,9 @@ import {
     session,
     favMovie,
     accountStates,
-    watchlist
+    watchlist,
+    getFavorites,
+    getWatchlist
 } from "../utils/ApiUtils";
 
 export const getImgData = () => dispatch => {
@@ -200,6 +206,15 @@ export const markAsFav = (id, sId) => dispatch => {
         .catch(error => dispatch({ type: MARK_FAV_FAILED, payload: error }));
 };
 
+export const favoritesMovies = (sId, pn) => dispatch => {
+    fetch(getFavorites(sId, pn))
+        .then(response => response.json())
+        .then(data => dispatch({ type: FAV_MOVIES_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: FAV_MOVIES_FAILED, payload: error }));
+};
+
+////================= watchlist
+
 export const markAsViewed = (id, sId) => dispatch => {
     fetch(watchlist(sId), {
         method: "POST",
@@ -217,6 +232,14 @@ export const markAsViewed = (id, sId) => dispatch => {
         .catch(error => dispatch({ type: MARK_VIEWED_FAILED, payload: error }));
 };
 
+export const watchlistMovies = (sId, pn) => dispatch => {
+    fetch(getWatchlist(sId, pn))
+        .then(response => response.json())
+        .then(data => dispatch({ type: WATCHLIST_SUCCESS, payload: data }))
+        .catch(error => dispatch({ type: WATCHLIST_FAILED, payload: error }));
+};
+
+////======= account state
 export const getAccountState = (sid, movieId) => dispatch => {
     fetch(accountStates(sid, movieId))
         .then(response => response.json())
