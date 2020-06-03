@@ -16,12 +16,15 @@ import ListOfTopRated from "./components/pagination/ListOfTopRated";
 import Welcome from "./components/login/Welcome";
 import Favorites from "./components/favoriteswatchlist/Favorites";
 import Watchlist from "./components/favoriteswatchlist/Watchlist";
+import CreateList from "./components/mylists/CreateList";
+import MyLists from "./components/mylists/MyLists";
+import ListItems from "./components/mylists/ListItems";
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
         onGetImgData: () => dispatch(getImgData()),
         onGetNowPlaying: () => dispatch(getNowPlaying()),
-        onGetTopRated: () => dispatch(getTopRated())
+        onGetTopRated: () => dispatch(getTopRated()),
     };
 };
 
@@ -59,6 +62,12 @@ export class App extends Component {
                         <Route path="/welcome" component={Welcome} />
                         <Route path="/favorites" component={Favorites} />
                         <Route path="/watchlist" component={Watchlist} />
+                        <Route path="/mylists" exact component={MyLists} />
+                        <Route path="/createlist" component={CreateList} />
+                        <Route
+                            path="/mylists/listitems/:id"
+                            component={ListItems}
+                        />
                     </Switch>
                     <Footer />
                 </div>

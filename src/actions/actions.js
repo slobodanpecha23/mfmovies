@@ -22,6 +22,8 @@ import {
     TOP_FAILED,
     SUGGESTION_SUCCESS,
     SUGGESTION_FAILED,
+    SUGGESTION_SUCCESS_1,
+    SUGGESTION_FAILED_1,
     SUGGESTION_CLEAR,
     CREATE_SESSION_ID_SUCCESS,
     CREATE_SESSION_ID_FAILED,
@@ -30,16 +32,24 @@ import {
     MARK_FAV_FAILED,
     ACCOUNT_STATES_SUCCESS,
     ACCOUNT_STATES_FAILED,
-    CHANGE_ACCOUNT_STATE,
-    CHANGE_ACCOUNT_STATE_1,
-    CHANGE_ACCOUNT_STATE_2,
-    CHANGE_ACCOUNT_STATE_3,
     MARK_VIEWED_SUCCESS,
     MARK_VIEWED_FAILED,
     FAV_MOVIES_SUCCESS,
     FAV_MOVIES_FAILED,
     WATCHLIST_SUCCESS,
-    WATCHLIST_FAILED
+    WATCHLIST_FAILED,
+    CREATED_LIST_SUCCESS,
+    CREATED_LIST_FAILED,
+    CREATE_LIST_SUCCESS,
+    CREATE_LIST_FAILED,
+    ADD_ITEM_SUCCESS,
+    ADD_ITEM_FAILED,
+    GET_MY_LIST_SUCCESS,
+    GET_MY_LIST_FAILED,
+    DELETE_LIST_SUCCESS,
+    DELETE_LIST_FAILED,
+    DELETE_ITEM_SUCCESS,
+    DELETE_ITEM_FAILED,
 } from "../constants/action_types";
 import {
     getConfig,
@@ -57,210 +67,311 @@ import {
     accountStates,
     watchlist,
     getFavorites,
-    getWatchlist
+    getWatchlist,
+    getLists,
+    createList,
+    addItem,
+    getMyList,
+    deleteMyItem,
+    deleteMyList,
 } from "../utils/ApiUtils";
 
-export const getImgData = () => dispatch => {
+export const getImgData = () => (dispatch) => {
     fetch(getConfig())
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
             return (
                 dispatch({ type: CONFIG_SUCCESS, payload: data }),
                 fetch(getPopularData())
             );
         })
-        .then(response => response.json())
-        .then(data => dispatch({ type: POPULAR_DATA_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: IMG_DATA_FAILED, payload: error }));
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: POPULAR_DATA_SUCCESS, payload: data }))
+        .catch((error) => dispatch({ type: IMG_DATA_FAILED, payload: error }));
 };
 
-export const getNowPlaying = () => dispatch => {
+export const getNowPlaying = () => (dispatch) => {
     fetch(getNowPlayingData())
-        .then(response => response.json())
-        .then(data =>
+        .then((response) => response.json())
+        .then((data) =>
             dispatch({ type: NOW_PLAYING_DATA_SUCCESS, payload: data })
         )
-        .catch(error =>
+        .catch((error) =>
             dispatch({ type: NOW_PLAYING_DATA_FAILED, payload: error })
         );
 };
 
-export const getTopRated = () => dispatch => {
+export const getTopRated = () => (dispatch) => {
     fetch(getTopRatedData())
-        .then(response => response.json())
-        .then(data => dispatch({ type: TOP_RATED_DATA_SUCCESS, payload: data }))
-        .catch(error =>
+        .then((response) => response.json())
+        .then((data) =>
+            dispatch({ type: TOP_RATED_DATA_SUCCESS, payload: data })
+        )
+        .catch((error) =>
             dispatch({ type: TOP_RATED_DATA_FAILED, payload: error })
         );
 };
 
-export const movieDetail = id => dispatch => {
+export const movieDetail = (id) => (dispatch) => {
     fetch(getMovieDetail(id))
-        .then(response => response.json())
-        .then(data => dispatch({ type: MOVIE_DETAIL_SUCCESS, payload: data }))
-        .catch(error =>
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: MOVIE_DETAIL_SUCCESS, payload: data }))
+        .catch((error) =>
             dispatch({ type: MOVIE_DETAIL_FAILED, payload: error })
         );
 };
 
-export const movieCrew = id => dispatch => {
+export const movieCrew = (id) => (dispatch) => {
     fetch(getCast(id))
-        .then(response => response.json())
-        .then(data => dispatch({ type: CAST_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: CAST_FAILED, payload: error }));
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: CAST_SUCCESS, payload: data }))
+        .catch((error) => dispatch({ type: CAST_FAILED, payload: error }));
 };
 
-export const actorDetails = id => dispatch => {
+export const actorDetails = (id) => (dispatch) => {
     fetch(getActorDetails(id))
-        .then(response => response.json())
-        .then(data => dispatch({ type: ACTOR_DETAILS_SUCCESS, payload: data }))
-        .catch(error =>
+        .then((response) => response.json())
+        .then((data) =>
+            dispatch({ type: ACTOR_DETAILS_SUCCESS, payload: data })
+        )
+        .catch((error) =>
             dispatch({ type: ACTOR_DETAILS_FAILED, payload: error })
         );
 };
 
-export const actorMovies = id => dispatch => {
+export const actorMovies = (id) => (dispatch) => {
     fetch(getActorMovies(id))
-        .then(response => response.json())
-        .then(data => dispatch({ type: ACTOR_MOVIES_SUCCESS, payload: data }))
-        .catch(error =>
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: ACTOR_MOVIES_SUCCESS, payload: data }))
+        .catch((error) =>
             dispatch({ type: ACTOR_MOVIES_FAILED, payload: error })
         );
 };
 
 ///======== pagination
 
-export const getPopularPagination = (category, pn) => dispatch => {
+export const getPopularPagination = (category, pn) => (dispatch) => {
     fetch(moviePage(category, pn))
-        .then(response => response.json())
-        .then(data => dispatch({ type: POP_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: POP_FAILED, payload: error }));
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: POP_SUCCESS, payload: data }))
+        .catch((error) => dispatch({ type: POP_FAILED, payload: error }));
 };
 
-export const getNowPagination = (category, pn) => dispatch => {
+export const getNowPagination = (category, pn) => (dispatch) => {
     fetch(moviePage(category, pn))
-        .then(response => response.json())
-        .then(data => dispatch({ type: NOW_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: NOW_FAILED, payload: error }));
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: NOW_SUCCESS, payload: data }))
+        .catch((error) => dispatch({ type: NOW_FAILED, payload: error }));
 };
 
-export const getTopPagination = (category, pn) => dispatch => {
+export const getTopPagination = (category, pn) => (dispatch) => {
     fetch(moviePage(category, pn))
-        .then(response => response.json())
-        .then(data => dispatch({ type: TOP_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: TOP_FAILED, payload: error }));
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: TOP_SUCCESS, payload: data }))
+        .catch((error) => dispatch({ type: TOP_FAILED, payload: error }));
 };
 
 //search suggestion
 
-export const getSuggestion = query => dispatch => {
+export const getSuggestion = (query) => (dispatch) => {
     fetch(suggestion(query))
-        .then(response => response.json())
-        .then(data => dispatch({ type: SUGGESTION_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: SUGGESTION_FAILED, payload: error }));
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: SUGGESTION_SUCCESS, payload: data }))
+        .catch((error) =>
+            dispatch({ type: SUGGESTION_FAILED, payload: error })
+        );
 };
 
-export const clearSuggestion = () => dispatch => {
+export const getSuggestion1 = (query) => (dispatch) => {
+    fetch(suggestion(query))
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: SUGGESTION_SUCCESS_1, payload: data }))
+        .catch((error) =>
+            dispatch({ type: SUGGESTION_FAILED_1, payload: error })
+        );
+};
+
+export const clearSuggestion = () => (dispatch) => {
     dispatch({ type: SUGGESTION_CLEAR });
 };
 
 ///=====================
 
-export const clearSessionId = () => dispatch => {
+export const clearSessionId = () => (dispatch) => {
     dispatch({ type: CLEAR_SESSION_ID });
 };
 
-export const getSessionId = token => dispatch => {
+export const getSessionId = (token) => (dispatch) => {
     fetch(session(), {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(token)
+        body: JSON.stringify(token),
     })
-        .then(response => response.json())
-        .then(data =>
+        .then((response) => response.json())
+        .then((data) =>
             dispatch({ type: CREATE_SESSION_ID_SUCCESS, payload: data })
         )
-        .catch(error =>
+        .catch((error) =>
             dispatch({ type: CREATE_SESSION_ID_FAILED, payload: error })
         );
 };
 
 ////=================== fav
 
-export const markAsFav = (id, sId) => dispatch => {
+export const markAsFav = (id, state, sId) => (dispatch) => {
     fetch(favMovie(sId), {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             media_type: "movie",
             media_id: id,
-            favorite: true
-        })
+            favorite: state,
+        }),
     })
-        .then(response => response.json())
-        .then(data => dispatch({ type: MARK_FAV_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: MARK_FAV_FAILED, payload: error }));
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: MARK_FAV_SUCCESS, payload: data }))
+        .catch((error) => dispatch({ type: MARK_FAV_FAILED, payload: error }));
 };
 
-export const favoritesMovies = (sId, pn) => dispatch => {
+export const favoritesMovies = (sId, pn) => (dispatch) => {
     fetch(getFavorites(sId, pn))
-        .then(response => response.json())
-        .then(data => dispatch({ type: FAV_MOVIES_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: FAV_MOVIES_FAILED, payload: error }));
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: FAV_MOVIES_SUCCESS, payload: data }))
+        .catch((error) =>
+            dispatch({ type: FAV_MOVIES_FAILED, payload: error })
+        );
 };
 
 ////================= watchlist
 
-export const markAsViewed = (id, sId) => dispatch => {
+export const markAsViewed = (id, state, sId) => (dispatch) => {
     fetch(watchlist(sId), {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             media_type: "movie",
             media_id: id,
-            watchlist: true
-        })
+            watchlist: state,
+        }),
     })
-        .then(response => response.json())
-        .then(data => dispatch({ type: MARK_VIEWED_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: MARK_VIEWED_FAILED, payload: error }));
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: MARK_VIEWED_SUCCESS, payload: data }))
+        .catch((error) =>
+            dispatch({ type: MARK_VIEWED_FAILED, payload: error })
+        );
 };
 
-export const watchlistMovies = (sId, pn) => dispatch => {
+export const watchlistMovies = (sId, pn) => (dispatch) => {
     fetch(getWatchlist(sId, pn))
-        .then(response => response.json())
-        .then(data => dispatch({ type: WATCHLIST_SUCCESS, payload: data }))
-        .catch(error => dispatch({ type: WATCHLIST_FAILED, payload: error }));
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: WATCHLIST_SUCCESS, payload: data }))
+        .catch((error) => dispatch({ type: WATCHLIST_FAILED, payload: error }));
 };
 
 ////======= account state
-export const getAccountState = (sid, movieId) => dispatch => {
+export const getAccountState = (sid, movieId) => (dispatch) => {
     fetch(accountStates(sid, movieId))
-        .then(response => response.json())
-        .then(data => dispatch({ type: ACCOUNT_STATES_SUCCESS, payload: data }))
-        .catch(error =>
+        .then((response) => response.json())
+        .then((data) =>
+            dispatch({ type: ACCOUNT_STATES_SUCCESS, payload: data })
+        )
+        .catch((error) =>
             dispatch({ type: ACCOUNT_STATES_FAILED, payload: error })
         );
 };
 
-export const changeAccountState = () => dispatch => {
-    dispatch({ type: CHANGE_ACCOUNT_STATE });
+////======= created list
+
+export const createdList = (sId, pn) => (dispatch) => {
+    fetch(getLists(sId, pn))
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: CREATED_LIST_SUCCESS, payload: data }))
+        .catch((error) =>
+            dispatch({ type: CREATED_LIST_FAILED, payload: error })
+        );
 };
 
-export const changeAccountState1 = () => dispatch => {
-    dispatch({ type: CHANGE_ACCOUNT_STATE_1 });
+export const createNewList = (sId, name, description) => (dispatch) => {
+    fetch(createList(sId), {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            name: name,
+            description: description,
+            language: "en",
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: CREATE_LIST_SUCCESS, payload: data }))
+        .catch((error) =>
+            dispatch({ type: CREATE_LIST_FAILED, payload: error })
+        );
 };
 
-export const changeAccountState2 = () => dispatch => {
-    dispatch({ type: CHANGE_ACCOUNT_STATE_2 });
+////======= adding item in the created list
+
+export const addMovie = (sId, listId, movieId) => (dispatch) => {
+    fetch(addItem(listId, sId), {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            media_id: movieId,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: ADD_ITEM_SUCCESS, payload: data }))
+        .catch((error) => dispatch({ type: ADD_ITEM_FAILED, payload: error }));
 };
 
-export const changeAccountState3 = () => dispatch => {
-    dispatch({ type: CHANGE_ACCOUNT_STATE_3 });
+//// get my list
+
+export const myList = (listId, pn) => (dispatch) => {
+    fetch(getMyList(listId, pn))
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: GET_MY_LIST_SUCCESS, payload: data }))
+        .catch((error) =>
+            dispatch({ type: GET_MY_LIST_FAILED, payload: error })
+        );
+};
+
+//// delete item from list
+
+export const deleteMovie = (sId, listId, movieId) => (dispatch) => {
+    fetch(deleteMyItem(listId, sId), {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            media_id: movieId,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: DELETE_ITEM_SUCCESS, payload: data }))
+        .catch((error) =>
+            dispatch({ type: DELETE_ITEM_FAILED, payload: error })
+        );
+};
+
+//// delete created list
+
+export const deleteList = (sId, listId) => (dispatch) => {
+    fetch(deleteMyList(listId, sId), {
+        method: "DELETE",
+    })
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: DELETE_LIST_SUCCESS, payload: data }))
+        .catch((error) =>
+            dispatch({ type: DELETE_LIST_FAILED, payload: error })
+        );
 };

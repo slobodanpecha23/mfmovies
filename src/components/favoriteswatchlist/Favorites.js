@@ -2,19 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { favoritesMovies } from "../../actions/actions";
 import { Link } from "react-router-dom";
-import Paginator from "./FavPaginator";
+import Paginator from "../pagination/Paginator";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         data: state.favoritesReducer.data,
         config: state.getImgDataReducer.config,
-        sessionId: state.sessionReducer
+        sessionId: state.sessionReducer,
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        favoritesMovies: (sId, pn) => dispatch(favoritesMovies(sId, pn))
+        favoritesMovies: (sId, pn) => dispatch(favoritesMovies(sId, pn)),
     };
 };
 
@@ -35,10 +35,10 @@ export class Favorites extends Component {
             const poster_size = config.images.poster_sizes[1];
             return (
                 <div>
-                    <h1 className="page-title">My Favorites Movies</h1>
+                    <h1 className="page-title">My Favorite Movies</h1>
                     <div className="popular-section pop-sec">
                         <div className="popular-poster">
-                            {data.results.map(movie => {
+                            {data.results.map((movie) => {
                                 return (
                                     <div
                                         key={movie.id}
@@ -66,7 +66,7 @@ export class Favorites extends Component {
                     </div>
                     <Paginator
                         onGetMovies={this.props.favoritesMovies}
-                        sessionId={this.props.sessionId}
+                        firstParam={this.props.sessionId}
                         data={data}
                     />
                 </div>

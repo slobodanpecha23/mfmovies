@@ -66,7 +66,7 @@ export class ListOfNowPlaying extends Component {
                     </div>
                     <Paginator
                         onGetMovies={this.props.onGetNowPagination}
-                        category="now_playing"
+                        firstParam="now_playing"
                         data={data}
                     />
                 </div>

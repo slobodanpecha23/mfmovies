@@ -11,16 +11,16 @@ export const getNowPlayingData = () =>
 export const getTopRatedData = () =>
     `${BASE_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
 
-export const getMovieDetail = id =>
+export const getMovieDetail = (id) =>
     `${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`;
 
-export const getCast = id =>
+export const getCast = (id) =>
     `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
 
-export const getActorDetails = id =>
+export const getActorDetails = (id) =>
     `${BASE_URL}person/${id}?api_key=${API_KEY}&language=en-US`;
 
-export const getActorMovies = id =>
+export const getActorMovies = (id) =>
     `${BASE_URL}person/${id}/movie_credits?api_key=${API_KEY}&language=en-US`;
 
 ////======= list: popular, now playing, top rated with pagination
@@ -30,7 +30,7 @@ export const moviePage = (category, pn) =>
 
 ////======= get search
 
-export const suggestion = query =>
+export const suggestion = (query) =>
     `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
 
 ////======= get token
@@ -43,7 +43,7 @@ export const session = () =>
 
 ////======= mark fav
 ////=================== sId = session id, pn = page number
-export const favMovie = sId =>
+export const favMovie = (sId) =>
     `${BASE_URL}account/{account_id}/favorite?api_key=${API_KEY}&session_id=${sId}`;
 
 export const getFavorites = (sId, pn) =>
@@ -51,7 +51,7 @@ export const getFavorites = (sId, pn) =>
 
 ////======= watchlist movie
 
-export const watchlist = sId =>
+export const watchlist = (sId) =>
     `${BASE_URL}account/{account_id}/watchlist?api_key=${API_KEY}&session_id=${sId}`;
 
 export const getWatchlist = (sId, pn) =>
@@ -61,3 +61,31 @@ export const getWatchlist = (sId, pn) =>
 
 export const accountStates = (sId, movieId) =>
     `${BASE_URL}movie/${movieId}/account_states?api_key=${API_KEY}&session_id=${sId}`;
+
+////======= created lists
+
+export const getLists = (sId, pn) =>
+    `${BASE_URL}account/{account_id}/lists?api_key=${API_KEY}&language=en-US&session_id=${sId}&page=${pn}`;
+
+export const createList = (sId) =>
+    `${BASE_URL}list?api_key=${API_KEY}&session_id=${sId}`;
+
+////======= adding item
+
+export const addItem = (listId, sId) =>
+    `${BASE_URL}list/${listId}/add_item?api_key=${API_KEY}&session_id=${sId}`;
+
+////======= get my list
+
+export const getMyList = (listId, pn) =>
+    `https://api.themoviedb.org/4/list/${listId}?page=${pn}&api_key=${API_KEY}`;
+
+////======= delete item from list
+
+export const deleteMyItem = (listId, sId) =>
+    `${BASE_URL}list/${listId}/remove_item?api_key=${API_KEY}&session_id=${sId}`;
+
+////======= delete created list
+
+export const deleteMyList = (listId, sId) =>
+    `${BASE_URL}list/${listId}?api_key=${API_KEY}&session_id=${sId}`;

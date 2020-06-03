@@ -7,39 +7,31 @@ import {
     markAsFav,
     markAsViewed,
     getAccountState,
-    changeAccountState,
-    changeAccountState1,
-    changeAccountState2,
-    changeAccountState3
 } from "../../actions/actions";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         config: state.getImgDataReducer.config,
         movie_detail: state.movieDetailReducer.movie_detail,
         sessionId: state.sessionReducer,
         favorites: state.accountStatesReducer.favorites,
-        viewed: state.accountStatesReducer.viewed
+        viewed: state.accountStatesReducer.viewed,
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        markAsFav: (id, sId) => dispatch(markAsFav(id, sId)),
-        markAsViewed: (id, sId) => dispatch(markAsViewed(id, sId)),
+        markAsFav: (id, state, sId) => dispatch(markAsFav(id, state, sId)),
+        markAsViewed: (id, state, sId) =>
+            dispatch(markAsViewed(id, state, sId)),
         getAccountState: (sId, movieId) =>
             dispatch(getAccountState(sId, movieId)),
-        changeAccountState: () => dispatch(changeAccountState()),
-        changeAccountState1: () => dispatch(changeAccountState1()),
-        changeAccountState2: () => dispatch(changeAccountState2()),
-        changeAccountState3: () => dispatch(changeAccountState3())
     };
 };
 
 export class MovieInfo extends Component {
     state = {
-        activeEyeicon: false,
-        activeListsicon: false
+        activeListsicon: false,
     };
 
     componentDidMount() {
@@ -48,27 +40,63 @@ export class MovieInfo extends Component {
 
     handleFaviconClick = () => {
         if (this.props.favorites) {
-            this.props.markAsFav(this.props.movieId, this.props.sessionId);
-            this.props.changeAccountState1();
+            this.props.markAsFav(
+                this.props.movieId,
+                false,
+                this.props.sessionId
+            );
+            alert(
+                "Are you sure you want to remove this movie from your favorites?"
+            );
+            this.props.getAccountState(
+                this.props.sessionId,
+                this.props.movieId
+            );
         } else {
-            this.props.markAsFav(this.props.movieId, this.props.sessionId);
-            this.props.changeAccountState();
+            this.props.markAsFav(
+                this.props.movieId,
+                true,
+                this.props.sessionId
+            );
+            alert("Are you sure you want to add this movie to your favorites?");
+            this.props.getAccountState(
+                this.props.sessionId,
+                this.props.movieId
+            );
         }
     };
 
     handleEyeiconClick = () => {
         if (this.props.viewed) {
-            this.props.markAsViewed(this.props.movieId, this.props.sessionId);
-            this.props.changeAccountState3();
+            this.props.markAsViewed(
+                this.props.movieId,
+                false,
+                this.props.sessionId
+            );
+            alert(
+                "Are you sure you want to remove this movie from your watchlist?"
+            );
+            this.props.getAccountState(
+                this.props.sessionId,
+                this.props.movieId
+            );
         } else {
-            this.props.markAsViewed(this.props.movieId, this.props.sessionId);
-            this.props.changeAccountState2();
+            this.props.markAsViewed(
+                this.props.movieId,
+                true,
+                this.props.sessionId
+            );
+            alert("Are you sure you want to add this movie to your watchlist?");
+            this.props.getAccountState(
+                this.props.sessionId,
+                this.props.movieId
+            );
         }
     };
 
     handleListsiconClick = () => {
-        this.setState(prevState => ({
-            activeListsicon: !prevState.activeListsicon
+        this.setState((prevState) => ({
+            activeListsicon: !prevState.activeListsicon,
         }));
     };
 
@@ -124,7 +152,7 @@ export class MovieInfo extends Component {
                                     }
                                 />
                                 {this.state.activeListsicon ? (
-                                    <AddList />
+                                    <AddList movieId={this.props.movieId} />
                                 ) : null}
                             </div>
                         </div>
@@ -139,7 +167,7 @@ export class MovieInfo extends Component {
                                 </span>
                             </h2>
                             <div className="genres">
-                                {movie_detail.genres.map(genre => {
+                                {movie_detail.genres.map((genre) => {
                                     return (
                                         <p
                                             key={genre.id}

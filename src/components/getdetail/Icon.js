@@ -12,7 +12,6 @@ export class Icon extends Component {
                 height={size}
                 viewBox="0 0 20 20"
             >
-                <title>heart</title>
                 <path fill={color} d={path}></path>
             </svg>
         );
@@ -24,10 +23,10 @@ export default Icon;
 Icon.propTypes = {
     color: string,
     size: number,
-    path: string
+    path: string,
 };
 
 Icon.defaultProps = {
     color: "#fff",
-    size: 80
+    size: 80,
 };

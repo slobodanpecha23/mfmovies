@@ -15,7 +15,7 @@ export class Suggestion extends Component {
             const sugg_movies = movies.results.slice(0, 5);
             return (
                 <div className="suggestion">
-                    {sugg_movies.map(movie => {
+                    {sugg_movies.map((movie) => {
                         return (
                             <Link
                                 to={`/detail/${movie.id}`}

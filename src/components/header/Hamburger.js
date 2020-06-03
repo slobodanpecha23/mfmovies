@@ -39,7 +39,9 @@ export class Hamburger extends Component {
                         <Link to="/watchlist" className="watchlistStyle">
                             <p>Watchlist</p>
                         </Link>
-                        <p>My lists</p>
+                        <Link to="/mylists" className="mylistsStyle">
+                            <p>My lists</p>
+                        </Link>
                         <LogInButton />
                     </div>
                 </div>
