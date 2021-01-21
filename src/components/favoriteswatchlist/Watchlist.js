@@ -1,33 +1,33 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getNowPagination } from "../../actions/actions";
+import { watchlistMovies } from "../../actions/actions";
 import { Link } from "react-router-dom";
-import { Paginator } from "./Paginator";
+import Paginator from "../pagination/Paginator";
 
 const mapStateToProps = state => {
     return {
-        data: state.nowPlayingPageReducer.data,
-        config: state.getImgDataReducer.config
+        data: state.watchlistReducer.data,
+        config: state.getImgDataReducer.config,
+        sessionId: state.sessionReducer
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onGetNowPagination: (category, pn) =>
-            dispatch(getNowPagination(category, pn))
+        watchlistMovies: (sId, pn) => dispatch(watchlistMovies(sId, pn))
     };
 };
 
-export class ListOfNowPlaying extends Component {
+export class Watchlist extends Component {
     componentDidMount() {
-        this.props.onGetNowPagination("now_playing", 1);
+        this.props.watchlistMovies(this.props.sessionId, 1);
     }
 
     render() {
         const { data, config } = this.props;
         if (
             config.images &&
-            config.images &&
+            config.images.base_url &&
             data.results &&
             data.results.length
         ) {
@@ -35,7 +35,7 @@ export class ListOfNowPlaying extends Component {
             const poster_size = config.images.poster_sizes[1];
             return (
                 <div>
-                    <h1 className="page-title">Now Playing</h1>
+                    <h1 className="page-title">My Watchlist</h1>
                     <div className="popular-section pop-sec">
                         <div className="popular-poster">
                             {data.results.map(movie => {
@@ -65,16 +65,16 @@ export class ListOfNowPlaying extends Component {
                         </div>
                     </div>
                     <Paginator
-                        onGetMovies={this.props.onGetNowPagination}
-                        firstParam="now_playing"
+                        onGetMovies={this.props.watchlistMovies}
+                        firstParam={this.props.sessionId}
                         data={data}
                     />
                 </div>
             );
         } else {
-            return <h1>You will see now playing movies very soon...</h1>;
+            return <h1>You will see watchlist very soon...</h1>;
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListOfNowPlaying);
+export default connect(mapStateToProps, mapDispatchToProps)(Watchlist);

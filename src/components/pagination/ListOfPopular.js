@@ -67,7 +67,7 @@ export class ListOfPopular extends Component {
                     </div>
                     <Paginator
                         onGetMovies={this.props.onGetPopularMovies}
-                        category="popular"
+                        firstParam="popular"
                         data={data}
                     />
                 </div>

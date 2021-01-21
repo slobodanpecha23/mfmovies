@@ -4,23 +4,23 @@ import { connect } from "react-redux";
 import { getSuggestion, clearSuggestion } from "../../actions/actions";
 import Suggestion from "./Suggestion";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         movies: state.suggestionReducer.movies,
-        config: state.getImgDataReducer.config
+        config: state.getImgDataReducer.config,
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        onGetSuggestion: query => dispatch(getSuggestion(query)),
-        onClear: () => dispatch(clearSuggestion())
+        onGetSuggestion: (query) => dispatch(getSuggestion(query)),
+        onClear: () => dispatch(clearSuggestion()),
     };
 };
 
 export class SearchField extends Component {
     state = {
-        query: ""
+        query: "",
     };
 
     handleChange = () => {
@@ -40,12 +40,13 @@ export class SearchField extends Component {
             <form className="searchForm">
                 <div>
                     <input
+                        className="input-1"
                         type="text"
                         placeholder="Search movie..."
-                        ref={input => (this.search = input)}
+                        ref={(input) => (this.search = input)}
                         onChange={this.handleChange}
                     />
-                    <input type="submit" value="Search" />
+                    <input className="input-2" type="submit" value="Search" />
                 </div>
                 <Suggestion
                     config={config}

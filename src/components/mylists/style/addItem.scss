@@ -1,0 +1,21 @@
+@import "../../../sass/variables.scss";
+
+.add-page {
+    background: $frame-background;
+    color: white;
+    width: 350px;
+    position: absolute;
+    transform: translate(0, 45px);
+    opacity: 90%;
+    z-index: 10;
+
+    @media only screen and(max-width: 600px) {
+        width: 300px;
+    }
+
+    &__inside {
+        &:not(:last-child) {
+            border-bottom: 1px solid $color-white;
+        }
+    }
+}

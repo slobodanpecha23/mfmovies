@@ -22,16 +22,30 @@ import {
     TOP_FAILED,
     SUGGESTION_SUCCESS,
     SUGGESTION_FAILED,
+    SUGGESTION_SUCCESS_1,
+    SUGGESTION_FAILED_1,
     SUGGESTION_CLEAR,
     CREATE_SESSION_ID_SUCCESS,
     CREATE_SESSION_ID_FAILED,
-    CLEAR_SESSION_ID
+    CLEAR_SESSION_ID,
+    ACCOUNT_STATES_SUCCESS,
+    ACCOUNT_STATES_FAILED,
+    MARK_FAV_SUCCESS,
+    MARK_FAV_FAILED,
+    FAV_MOVIES_SUCCESS,
+    FAV_MOVIES_FAILED,
+    WATCHLIST_FAILED,
+    WATCHLIST_SUCCESS,
+    CREATED_LIST_FAILED,
+    CREATED_LIST_SUCCESS,
+    GET_MY_LIST_SUCCESS,
+    GET_MY_LIST_FAILED,
 } from "../constants/action_types";
 
 const initialState = {
     config: {},
     popular: {},
-    error: ""
+    error: "",
 };
 
 export const getImgDataReducer = (state = initialState, action = {}) => {
@@ -49,7 +63,7 @@ export const getImgDataReducer = (state = initialState, action = {}) => {
 
 const nowPlayingState = {
     now_playing: {},
-    error: ""
+    error: "",
 };
 
 export const getNowPlayingReducer = (state = nowPlayingState, action = {}) => {
@@ -65,7 +79,7 @@ export const getNowPlayingReducer = (state = nowPlayingState, action = {}) => {
 
 const topRatedState = {
     top_rated: {},
-    error: ""
+    error: "",
 };
 
 export const getTopRatedReducer = (state = topRatedState, action = {}) => {
@@ -82,7 +96,7 @@ export const getTopRatedReducer = (state = topRatedState, action = {}) => {
 const movieDetailState = {
     movie_detail: {},
     cast: {},
-    error: ""
+    error: "",
 };
 
 export const movieDetailReducer = (state = movieDetailState, action = {}) => {
@@ -110,7 +124,7 @@ export const castReducer = (state = movieDetailState, action = {}) => {
 const actorDetailsState = {
     actor_details: {},
     actor_movies: {},
-    error: ""
+    error: "",
 };
 
 export const actorDetailsReducer = (state = actorDetailsState, action = {}) => {
@@ -139,7 +153,7 @@ export const actorMoviesReducer = (state = actorDetailsState, action = {}) => {
 
 const paginationPopState = {
     data: {},
-    error: ""
+    error: "",
 };
 
 export const popularPageReducer = (state = paginationPopState, action = {}) => {
@@ -155,7 +169,7 @@ export const popularPageReducer = (state = paginationPopState, action = {}) => {
 
 const paginationNowState = {
     data: {},
-    error: ""
+    error: "",
 };
 
 export const nowPlayingPageReducer = (
@@ -174,7 +188,7 @@ export const nowPlayingPageReducer = (
 
 const paginationTopState = {
     data: {},
-    error: ""
+    error: "",
 };
 
 export const topPageReducer = (state = paginationTopState, action = {}) => {
@@ -190,7 +204,7 @@ export const topPageReducer = (state = paginationTopState, action = {}) => {
 
 const moviesState = {
     movies: {},
-    error: ""
+    error: "",
 };
 
 export const suggestionReducer = (state = moviesState, action = {}) => {
@@ -198,6 +212,24 @@ export const suggestionReducer = (state = moviesState, action = {}) => {
         case SUGGESTION_SUCCESS:
             return { ...state, movies: action.payload };
         case SUGGESTION_FAILED:
+            return { ...state, error: action.payload };
+        case SUGGESTION_CLEAR:
+            return { ...state, movies: {} };
+        default:
+            return state;
+    }
+};
+
+const moviesState1 = {
+    movies: {},
+    error: "",
+};
+
+export const suggestionReducer1 = (state = moviesState1, action = {}) => {
+    switch (action.type) {
+        case SUGGESTION_SUCCESS_1:
+            return { ...state, movies: action.payload };
+        case SUGGESTION_FAILED_1:
             return { ...state, error: action.payload };
         case SUGGESTION_CLEAR:
             return { ...state, movies: {} };
@@ -223,6 +255,102 @@ export const sessionReducer = (state = storedSessionId, action = {}) => {
             localStorage.clear();
             state = "";
             return state;
+        default:
+            return state;
+    }
+};
+
+////===========================
+
+const accountState = {
+    favorites: false,
+    viewed: false,
+    status_message: "",
+    error: "",
+};
+
+export const accountStatesReducer = (state = accountState, action = {}) => {
+    switch (action.type) {
+        case ACCOUNT_STATES_SUCCESS:
+            return {
+                ...state,
+                favorites: action.payload.favorite,
+                viewed: action.payload.watchlist,
+            };
+        case ACCOUNT_STATES_FAILED:
+            return { ...state, error: action.payload };
+        case MARK_FAV_SUCCESS:
+            return { ...state, status_message: action.payload.status_message };
+        case MARK_FAV_FAILED:
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+const favState = {
+    data: {},
+    error: "",
+};
+
+export const favoritesReducer = (state = favState, action = {}) => {
+    switch (action.type) {
+        case FAV_MOVIES_SUCCESS:
+            return { ...state, data: action.payload };
+        case FAV_MOVIES_FAILED:
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+const watchlistState = {
+    data: {},
+    error: "",
+};
+
+export const watchlistReducer = (state = watchlistState, action = {}) => {
+    switch (action.type) {
+        case WATCHLIST_SUCCESS:
+            return { ...state, data: action.payload };
+        case WATCHLIST_FAILED:
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+/////////////////////
+
+const creLiState = {
+    data: {},
+    error: "",
+};
+
+export const createdListReducer = (state = creLiState, action = {}) => {
+    switch (action.type) {
+        case CREATED_LIST_SUCCESS:
+            return { ...state, data: action.payload };
+        case CREATED_LIST_FAILED:
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+////////////////////////
+
+const myListState = {
+    data: {},
+    error: "",
+};
+
+export const myListReducer = (state = myListState, action = {}) => {
+    switch (action.type) {
+        case GET_MY_LIST_SUCCESS:
+            return { ...state, data: action.payload };
+        case GET_MY_LIST_FAILED:
+            return { ...state, error: action.payload };
         default:
             return state;
     }

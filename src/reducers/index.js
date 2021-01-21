@@ -10,7 +10,13 @@ import {
     nowPlayingPageReducer,
     topPageReducer,
     suggestionReducer,
-    sessionReducer
+    suggestionReducer1,
+    sessionReducer,
+    accountStatesReducer,
+    favoritesReducer,
+    watchlistReducer,
+    createdListReducer,
+    myListReducer,
 } from "./reducers";
 import { combineReducers } from "redux";
 
@@ -26,7 +32,13 @@ const rootReducer = combineReducers({
     nowPlayingPageReducer,
     topPageReducer,
     suggestionReducer,
-    sessionReducer
+    suggestionReducer1,
+    sessionReducer,
+    accountStatesReducer,
+    favoritesReducer,
+    watchlistReducer,
+    createdListReducer,
+    myListReducer,
 });
 
 export default rootReducer;

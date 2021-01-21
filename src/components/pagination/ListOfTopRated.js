@@ -66,7 +66,7 @@ export class ListOfTopRated extends Component {
                     </div>
                     <Paginator
                         onGetMovies={this.props.onGetTopRatedMovies}
-                        category="top_rated"
+                        firstParam="top_rated"
                         data={data}
                     />
                 </div>

@@ -1,0 +1,47 @@
+@import "../../../sass/variables.scss";
+
+.wholePage {
+    min-height: 800px;
+}
+
+.add-movie {
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    & input {
+        width: 350px;
+        height: 40px;
+        border: 2px solid $border-color-1;
+        outline: none;
+
+        &::placeholder {
+            color: $placeholder-color;
+        }
+
+        &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 8px 0 $primary-color;
+        }
+
+        @media only screen and(max-width: 600px) {
+            width: 300px;
+        }
+    }
+}
+
+.delete-item {
+    background-color: $color-red;
+    color: $color-white;
+    text-align: center;
+    margin: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.item {
+    border: 2px solid $border-color;
+    border-radius: 3px;
+    margin: 5px;
+    background-color: $primary-color;
+}

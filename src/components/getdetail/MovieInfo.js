@@ -3,41 +3,105 @@ import "./style/info.scss";
 import { connect } from "react-redux";
 import Icon from "./Icon";
 import AddList from "./AddList";
+import {
+    markAsFav,
+    markAsViewed,
+    getAccountState,
+} from "../../actions/actions";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         config: state.getImgDataReducer.config,
-        movie_detail: state.movieDetailReducer.movie_detail
+        movie_detail: state.movieDetailReducer.movie_detail,
+        sessionId: state.sessionReducer,
+        favorites: state.accountStatesReducer.favorites,
+        viewed: state.accountStatesReducer.viewed,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        markAsFav: (id, state, sId) => dispatch(markAsFav(id, state, sId)),
+        markAsViewed: (id, state, sId) =>
+            dispatch(markAsViewed(id, state, sId)),
+        getAccountState: (sId, movieId) =>
+            dispatch(getAccountState(sId, movieId)),
     };
 };
 
 export class MovieInfo extends Component {
     state = {
-        activeFavicon: false,
-        activeEyeicon: false,
-        activeListsicon: false
+        activeListsicon: false,
     };
 
+    componentDidMount() {
+        this.props.getAccountState(this.props.sessionId, this.props.movieId);
+    }
+
     handleFaviconClick = () => {
-        this.setState(prevState => ({
-            activeFavicon: !prevState.activeFavicon
-        }));
+        if (this.props.favorites) {
+            this.props.markAsFav(
+                this.props.movieId,
+                false,
+                this.props.sessionId
+            );
+            alert(
+                "Are you sure you want to remove this movie from your favorites?"
+            );
+            this.props.getAccountState(
+                this.props.sessionId,
+                this.props.movieId
+            );
+        } else {
+            this.props.markAsFav(
+                this.props.movieId,
+                true,
+                this.props.sessionId
+            );
+            alert("Are you sure you want to add this movie to your favorites?");
+            this.props.getAccountState(
+                this.props.sessionId,
+                this.props.movieId
+            );
+        }
     };
 
     handleEyeiconClick = () => {
-        this.setState(prevState => ({
-            activeEyeicon: !prevState.activeEyeicon
-        }));
+        if (this.props.viewed) {
+            this.props.markAsViewed(
+                this.props.movieId,
+                false,
+                this.props.sessionId
+            );
+            alert(
+                "Are you sure you want to remove this movie from your watchlist?"
+            );
+            this.props.getAccountState(
+                this.props.sessionId,
+                this.props.movieId
+            );
+        } else {
+            this.props.markAsViewed(
+                this.props.movieId,
+                true,
+                this.props.sessionId
+            );
+            alert("Are you sure you want to add this movie to your watchlist?");
+            this.props.getAccountState(
+                this.props.sessionId,
+                this.props.movieId
+            );
+        }
     };
 
     handleListsiconClick = () => {
-        this.setState(prevState => ({
-            activeListsicon: !prevState.activeListsicon
+        this.setState((prevState) => ({
+            activeListsicon: !prevState.activeListsicon,
         }));
     };
 
     render() {
-        const { config, movie_detail } = this.props;
+        const { config, movie_detail, favorites, viewed } = this.props;
         if (
             config.images &&
             config.images.base_url &&
@@ -47,6 +111,7 @@ export class MovieInfo extends Component {
             const base_url = config.images.base_url;
             const poster_size = config.images.poster_sizes[3];
             const logo_size = config.images.logo_sizes[1];
+
             return (
                 <div className="info">
                     <div className="info__left-side">
@@ -62,11 +127,7 @@ export class MovieInfo extends Component {
                             >
                                 <Icon
                                     path="M17.19 4.155c-1.672-1.534-4.383-1.534-6.055 0l-1.135 1.042-1.136-1.042c-1.672-1.534-4.382-1.534-6.054 0-1.881 1.727-1.881 4.52 0 6.246l7.19 6.599 7.19-6.599c1.88-1.726 1.88-4.52 0-6.246z"
-                                    color={
-                                        this.state.activeFavicon
-                                            ? "#FF0000"
-                                            : "#fff"
-                                    }
+                                    color={favorites ? "#FF0000" : "#fff"}
                                 />
                             </div>
                             <div
@@ -75,11 +136,7 @@ export class MovieInfo extends Component {
                             >
                                 <Icon
                                     path="M10 4.4c-6.561 0-10 4.832-10 5.6 0 0.766 3.439 5.6 10 5.6s10-4.834 10-5.6c0-0.768-3.44-5.6-10-5.6zM10 14.307c-2.455 0-4.445-1.928-4.445-4.307s1.99-4.309 4.445-4.309c2.455 0 4.444 1.93 4.444 4.309s-1.989 4.307-4.444 4.307zM10 10c-0.407-0.447 0.663-2.154 0-2.154-1.228 0-2.223 0.965-2.223 2.154s0.995 2.154 2.223 2.154c1.227 0 2.223-0.965 2.223-2.154 0-0.547-1.877 0.379-2.223 0z"
-                                    color={
-                                        this.state.activeEyeicon
-                                            ? "#3098EA"
-                                            : "#fff"
-                                    }
+                                    color={viewed ? "#3098EA" : "#fff"}
                                 />
                             </div>
                             <div
@@ -95,7 +152,7 @@ export class MovieInfo extends Component {
                                     }
                                 />
                                 {this.state.activeListsicon ? (
-                                    <AddList />
+                                    <AddList movieId={this.props.movieId} />
                                 ) : null}
                             </div>
                         </div>
@@ -110,7 +167,7 @@ export class MovieInfo extends Component {
                                 </span>
                             </h2>
                             <div className="genres">
-                                {movie_detail.genres.map(genre => {
+                                {movie_detail.genres.map((genre) => {
                                     return (
                                         <p
                                             key={genre.id}
@@ -162,4 +219,4 @@ export class MovieInfo extends Component {
     }
 }
 
-export default connect(mapStateToProps)(MovieInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieInfo);

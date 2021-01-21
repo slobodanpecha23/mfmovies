@@ -3,11 +3,11 @@ import "./style/popular.scss";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         config: state.getImgDataReducer.config,
         popular: state.getImgDataReducer.popular,
-        error: state.getImgDataReducer.error
+        error: state.getImgDataReducer.error,
     };
 };
 
@@ -34,7 +34,7 @@ export class Popular extends Component {
                         </Link>
                     </h1>
                     <div className="poster-section">
-                        {poster.map(obj => {
+                        {poster.map((obj) => {
                             return (
                                 <div key={obj.id} className="inside-poster">
                                     <Link to={`/detail/${obj.id}`}>

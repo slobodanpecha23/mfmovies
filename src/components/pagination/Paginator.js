@@ -10,7 +10,7 @@ export class Paginator extends Component {
 
     changeCurrentPage = numPage => {
         this.setState({ currentPage: numPage });
-        this.props.onGetMovies(this.props.category, numPage);
+        this.props.onGetMovies(this.props.firstParam, numPage);
     };
 
     render() {

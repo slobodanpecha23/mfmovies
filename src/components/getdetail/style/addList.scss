@@ -9,8 +9,17 @@
     padding-left: 7px;
     color: $color-white;
     z-index: 3;
+
+    & .linkos {
+        text-decoration: none;
+        color: $color-white;
+    }
 }
 
 .new-list {
     height: 30px;
+}
+
+.listStyle {
+    list-style: none;
 }
